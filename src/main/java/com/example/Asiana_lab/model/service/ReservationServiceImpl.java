@@ -30,6 +30,16 @@ public class ReservationServiceImpl implements ReservationService {
     public ArrayList<Seat> getSeat(int flight_no) {
         return reservationDao.selectAllSeat(flight_no);
     }
+    // 특정 좌석 예약 가능여부
+    @Override
+    public boolean setIsAvailable(int flight_no, int seat_no) {
+        Seat seat = reservationDao.selectOneSeat(flight_no,seat_no);
+        if(seat.isAvailable()){
+            return true;
+        }
+        return false;
+    }
+
     // 예약 하기
     @Override
     public void reserve(int flight_no, int seat_no) {

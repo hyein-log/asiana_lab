@@ -19,6 +19,9 @@ public interface ReservationDao {
     // 해당 여정의 모든 좌석(Seat)정보 select
     ArrayList<Seat> selectAllSeat(int flight_no);
 
+    // 한 좌석 정보 select
+    Seat selectOneSeat(int flight_no,int seat_no);
+
     // 예약할 좌석 DB에 insert
     void insertReservation(int user_no, int seat_no);
 

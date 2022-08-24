@@ -19,6 +19,12 @@
         SELECT *
         FROM "Seat"
     </select>
+    <!--해당 여정의 특정 좌석(Seat)정보 불러오기-->
+    <select id="selectOneSeat" resultType="Seat" parameterType="int">
+        SELECT *
+        FROM "Seat"
+        WHERE "flight_no" = #{flight_no} and "seat_no" = #{seat_no}
+    </select>
     <insert id="insertReservation" parameterType="int" >
         INSERT INTO RESERVATION
         VALUES(Reservation_seq.NEXTVAL,#{user_no}, #{seat_no})

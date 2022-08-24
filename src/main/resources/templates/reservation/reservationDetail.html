@@ -2,9 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>여행 상세 화면</title>
 </head>
 <body>
-
+    <h2>예약 상세 페이지</h2>
+    <table>
+        <caption>예약 상세 내용</caption>
+        <th>여정 번호</th>
+        <th>출발 일자</th>
+        <th>출발지</th>
+        <th>도착지</th>
+        <tr>
+            <td th:text="${flight.flight_no}"></td>
+            <td th:text="${flight.dep_date}"></td>
+            <td th:text="${flight.departure}"></td>
+            <td th:text="${flight.destination}"></td>
+        </tr>
+    </table>
+    <form action="/reservationCommit/${flight.flight_no}">
+        <th:block th:each="seat, s: ${seats}">
+            <input type="checkbox" th:name="|ans${s.index + 1}|" th:checked="${seat.}">
+            [[${s.index + 1}]]
+            <br>
+        </th:block>
+        <button type="submit">제출</button>
+    </form>
 </body>
 </html>

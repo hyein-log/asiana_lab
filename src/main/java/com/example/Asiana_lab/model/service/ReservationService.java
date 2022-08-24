@@ -13,6 +13,8 @@ public interface ReservationService {
     Flight getFlight(int flight_no);
     // 해당 여정 좌석 조회
     ArrayList<Seat> getSeat(int flight_no);
+    //좌석 예약 가능 여부 조회
+    boolean setIsAvailable(int flight_no, int seat_no);
     // 예약 하기
     void reserve(int flight_no,int seat_no);
 

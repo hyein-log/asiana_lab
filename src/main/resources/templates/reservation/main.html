@@ -11,7 +11,7 @@
 <div >
     <table>
         <tr th:each="flight: ${flights}">
-            <td href="" target="_blank"> 여정 날짜: [[ ${flight.dep_date}]]
+            <td href="|/read_flight/${flight.flight_no}" target="_blank"> 여정 날짜: [[ ${flight.dep_date}]]
                 출발지: [[ ${flight.departure}]]
                 도착지: [[${flight.destination}]]
             </td>
