@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
         @RequestMapping("/insert")
         @ResponseBody
         public String insert() throws Exception {
-            System.out.println("Controller");
-            userService.join(new User(2, "123", "123", "123", "123", "123", 100, true));
+//            userService.join();
             return "result";
         }
 
