@@ -4,8 +4,13 @@ package com.example.Asiana_lab.model.dao;
 import com.example.Asiana_lab.model.dto.Board;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface BoardDao {
+
+    List<Board> findAll();
+
     //게시글 추가
     void insertBoard(Board board);
 

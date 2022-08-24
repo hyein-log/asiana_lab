@@ -13,5 +13,5 @@ public class Board {
     private String content; //내용
     private int cnt; //조회수
     private String reg_date; //작성일; 작성,수정시 업데이트
-    private String user_no; //작성자; User table 회원번호 참조
+    private int user_no; //작성자; User table 회원번호 참조
 }
