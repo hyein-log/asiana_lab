@@ -6,6 +6,9 @@ import com.example.Asiana_lab.model.dao.UserDao;
 import com.example.Asiana_lab.model.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -18,12 +21,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int idDuplicateCheck(String userid) {
-        return 0;
+        User user = userDao.selectIdByUserid(userid);
+        return user !=null ? 1 :0;
     }
 
     @Override
     public int emailDuplicateCheck(String email) {
-        return 0;
+        User user = userDao.selectOneByEmail(email);
+        return user !=null ? 1 :0;
     }
 
     @Override
@@ -31,33 +36,48 @@ public class UserServiceImpl implements UserService {
         userDao.insert(user);
     }
 
-    @Override
-    public int login(String userId, String pw) throws Exception {
-        return 0;
-    }
 
     @Override
-    public void changeUserInfo(User newUser, String userid) {
-
+    public String login(HttpServletRequest request, @RequestParam String userid, @RequestParam String password) throws Exception {
+        User user = userDao.selectIdByUserid(userid);
+        if(user!=null && user.getPassword().equals(password)){
+            request.getSession().setAttribute("userid", userid);
+            return "home";
+        }
+        return "redirect:/login";
     }
 
     @Override
     public String findId(String email) throws Exception {
-        return null;
+        User user = userDao.selectOneByEmail(email);
+        String userid = user.getUserid();
+        return "redirect:/?userid="+userid;
     }
 
     @Override
-    public void changePw(String userid, String newPw) throws Exception {
-
+    public void changePw(String userid) throws Exception {
+        userDao.user_updateUserPw(userid);
     }
 
+
     @Override
-    public int signOut(String userid) throws Exception {
-        return 0;
+    public String signOut(HttpServletRequest request,String userid) throws Exception {
+        request.getSession().removeAttribute("userid");
+
+        return "redirect:/";
     }
 
     @Override
     public User selectOneById(String userid) throws Exception {
+        User user = userDao.selectIdByUserid(userid);
+        if(userDao.selectIdByUserid(userid)!=null){
+            return user;
+        }
         return null;
+    }
+
+    @Override
+    public void changeId(String password) throws Exception {
+        userDao.user_updateUserId(password);
     }
 }

@@ -8,17 +8,22 @@ public interface UserDao {
     //회원가입
     void insert(User user);
     //회원정보수정
-    void update(User user);
+    void user_updateUserId(String user);
+    void user_updateUserPw(String user);
     //회원탈퇴
-    void delete(int user_no);
+    void user_delete(int user_no);
     //아이디로 유저 찾기
     User selectOneById(String user_no);
     //이메일로 유저 찾기
     User selectOneByEmail(String email);
     //유저아이디로 id 찾기
-    int selectIdByUserid(String user_no);
+    User selectIdByUserid(String userid);
     //아이디 중복 체크
     int idDuplicateCheck(String user_no);
     //이메일 중복 체크
     int emailDuplicateCheck(String email);
+    void changeId(String password);
+
+    void changePw(String userid);
+
 }

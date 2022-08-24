@@ -6,7 +6,28 @@
 
     <insert id="insert" >
         INSERT INTO "User"
-        VALUES(#{user_no}, #{userid}, #{password}, #{email}, #{passport}, #{birthday}, #{mileage}, #{isAdmin})
+        VALUES(user_seq.nextval, #{userid}, #{password}, #{email}, #{passport}, #{birthday}, #{mileage}, #{isAdmin})
     </insert>
+
+    <select id="selectIdByUserid" parameterType="String" resultType="User">
+        select * from "User" u  where "userid"  = #{userid}
+    </select>
+    <select id="selectOneById" parameterType="String" resultType="User">
+        select * from "User" u  where "userid"  = #{userid}
+    </select>
+    <select id="selectOneByEmail" parameterType="String" resultType="User">
+        select * from "User" u  where "userid"  = #{userid}
+    </select>
+    <update id="user_updateUserId" parameterType="String">
+        UPDATE "User" SET "userid" = #{userid} WHERE "password" = #{password}
+    </update>
+
+    <update id="user_updateUserPw" parameterType="String">
+        UPDATE "User" SET "password" = #{password} WHERE "userid" = #{userid}
+    </update>
+
+    <delete id="user_delete" parameterType="String">
+        delete from "User" where "userid"=#{userid}
+    </delete>
 
 </mapper>
