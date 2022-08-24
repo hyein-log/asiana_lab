@@ -2,7 +2,9 @@ package com.example.Asiana_lab.model.dao;
 
 
 import com.example.Asiana_lab.model.dto.Board;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface BoardDao {
     //게시글 추가
     void insertBoard(Board board);

@@ -12,9 +12,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
     @Autowired
     private BoardDao boardDao;
-
 
     @Override
     public int idDuplicateCheck(String userid) {
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void join(User user) throws Exception {
-
+        userDao.insert(user);
     }
 
     @Override
