@@ -1,6 +1,7 @@
 package com.example.Asiana_lab.model.dao;
 
-import com.asiana.idt.pjt.model.dto.Board;
+
+import com.example.Asiana_lab.model.dto.Board;
 
 public interface BoardDao {
     //게시글 추가
