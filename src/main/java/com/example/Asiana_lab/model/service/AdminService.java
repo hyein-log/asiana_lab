@@ -1,9 +1,11 @@
 package com.example.Asiana_lab.model.service;
 
 import com.example.Asiana_lab.model.dto.Flight;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface AdminService {
     /* 여정 관리 */
     //여정추가
