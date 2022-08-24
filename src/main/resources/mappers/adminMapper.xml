@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Asiana_lab.model.dao.AdminDao">
+
+    <!-- 여정 관리 -->
+    <insert id="insertFlight">
+        INSERT INTO flight(dep_date, departure, destination)
+        VALUES(#{dep_date}, #{departure}, #{destination})
+    </insert>
+    
+    <delete id="deleteFlight" parameterType="int">
+        DELETE FROM flight
+        WHERE flight_no = #{flight_no}
+    </delete>
+
+    <update id="updateFlight">
+        UPDATE flight
+        SET dep_date = #{dep_date},
+        departure = #{departure},
+        destination = #{destination}
+        WHERE flight_no = #{flight_no}
+    </update>
+
+    <!-- 회원 관리 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM flight
+        WHERE user_no = #{user_no}
+    </delete>
+
+</mapper>
