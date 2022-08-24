@@ -18,7 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
         public String insert() throws Exception {
             System.out.println("Controller");
             userService.join(new User(2, "123", "123", "123", "123", "123", 100, true));
-            return "성공?";
+            return "result";
+        }
+
+        @RequestMapping("/")
+        @ResponseBody
+        public String main() throws Exception {
+            return "index";
         }
     }
 

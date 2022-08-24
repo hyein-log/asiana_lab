@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void join(User user) throws Exception {
+        System.out.println("Service");
         userDao.insert(user);
     }
 
