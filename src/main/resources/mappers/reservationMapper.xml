@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Asiana_lab.model.dao.ReservationDao">
+    <!--모든 여정(Flight)정보 불러오기-->
+    <select id="selectAllFlight" resultType="Flight">
+        SELECT *
+        FROM flight
+    </select>
+    <!-- 하나의 여정 정보 불러오기-->
+    <select id="selectOneFlight" resultType="Flight" parameterType="int">
+        SELECT *
+        FROM flight
+        WHERE  "flight_no" = #{flight_no}
+    </select>
+     <!--해당 여정의 모든 좌석(Seat)정보 불러오기-->
+    <select id="selectAllSeat" resultType="Flight" parameterType="int">
+        SELECT *
+        FROM seat
+    </select>
+    <insert id="insertReservation" parameterType="int" >
+        INSERT INTO RESERVATION
+        VALUES(Reservation_seq.NEXTVAL,#{user_no}, #{seat_no})
+    </insert>
+
+</mapper>

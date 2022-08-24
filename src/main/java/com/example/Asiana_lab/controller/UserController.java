@@ -20,10 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
             return "result";
         }
 
-        @RequestMapping("/")
-        @ResponseBody
-        public String main() throws Exception {
-            return "index";
-        }
+
     }
 
