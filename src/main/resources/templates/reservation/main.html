@@ -5,8 +5,19 @@
     <title>AsianaAirport메인페이지</title>
 </head>
 <body>
-<div th:each="flight: ${flights}">
-  [[ ${flight.id} ${flight.dep_date} ${flight.departure} ${flight.destination}  ]]
+<div th:replace="~{/common/navigation :: headerFragment}"></div>
+<h1>항공권 예약</h1>
+<h5>여정 선택</h5>
+<div >
+    <table>
+        <tr th:each="flight: ${flights}">
+            <td href="" target="_blank"> 여정 날짜: [[ ${flight.dep_date}]]
+                출발지: [[ ${flight.departure}]]
+                도착지: [[${flight.destination}]]
+            </td>
+        </tr>
+    </table>
+
 </div>
 </body>
 </html>
