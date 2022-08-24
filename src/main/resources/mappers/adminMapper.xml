@@ -16,7 +16,7 @@
     </delete>
 
     <update id="updateFlight">
-        UPDATE flight
+        UPDATE "Flight"
         SET dep_date = #{dep_date},
         departure = #{departure},
         destination = #{destination}
@@ -25,7 +25,7 @@
 
     <!-- 회원 관리 -->
     <delete id="deleteUser" parameterType="int">
-        DELETE FROM flight
+        DELETE FROM "Flight"
         WHERE user_no = #{user_no}
     </delete>
 

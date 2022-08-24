@@ -6,18 +6,18 @@
     <!--모든 여정(Flight)정보 불러오기-->
     <select id="selectAllFlight" resultType="Flight">
         SELECT *
-        FROM flight
+        FROM "Flight"
     </select>
     <!-- 하나의 여정 정보 불러오기-->
     <select id="selectOneFlight" resultType="Flight" parameterType="int">
         SELECT *
-        FROM flight
+        FROM "Flight"
         WHERE  "flight_no" = #{flight_no}
     </select>
      <!--해당 여정의 모든 좌석(Seat)정보 불러오기-->
     <select id="selectAllSeat" resultType="Flight" parameterType="int">
         SELECT *
-        FROM seat
+        FROM "Seat"
     </select>
     <insert id="insertReservation" parameterType="int" >
         INSERT INTO RESERVATION
