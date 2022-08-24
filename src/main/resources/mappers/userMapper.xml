@@ -5,7 +5,7 @@
 <mapper namespace="com.example.Asiana_lab.model.dao.UserDao">
 
     <insert id="insert" >
-        INSERT INTO User
+        INSERT INTO "User"
         VALUES(#{user_no}, #{userid}, #{password}, #{email}, #{passport}, #{birthday}, #{mileage}, #{isAdmin})
     </insert>
 
