@@ -110,4 +110,38 @@ public class BoardController {
         return "redirect:/boardList";
     }
 
+    @RequestMapping("/boardForm")
+    public String boardForm() {
+
+        return "/board/boardForm";
+    }
+
+    @RequestMapping("/insertBoard")
+    public String insertBoard(@RequestParam int user_no, @RequestParam String title, @RequestParam String content, Model model) {
+
+
+        boardService.insertBoard(new Board(title, content, user_no));
+        return "redirect:/boardList";
+
+    }
+
+    @RequestMapping("/delete")
+    public String delete(@RequestParam int board_no) {
+
+        System.out.println(String.format("%d@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", board_no));
+
+        int size = boardService.selectListCommentByNo(board_no).size();
+
+        System.out.println(String.format("@@@@@@@@@@@@@%d", size));
+
+        if (size > 0) {
+            boardService.deleteComment(board_no);
+            boardService.delete(board_no);
+        } else{
+            boardService.delete(board_no);
+        }
+
+        return "redirect:/boardList";
+    }
+
 }

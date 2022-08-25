@@ -22,7 +22,7 @@ public interface BoardDao {
 
     //게시글 삭제
     //param: board_no
-    int deleteBoard(int no);
+    void delete(int board_no);
 
     //게시글수정을 위한 리뷰 하나 select
     //param: board_no
@@ -38,4 +38,8 @@ public interface BoardDao {
     List<File> findFilesByBoard(int board_no);
 
     void addCnt(int board_no);
+
+    void deleteComment(int board_no);
+
+    List<Comment> selectListCommenyByNo(int board_no);
 }

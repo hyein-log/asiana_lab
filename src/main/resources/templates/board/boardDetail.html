@@ -72,7 +72,7 @@
     <input type="submit" value="작성">
   </form>
   <a href="/boardList" class="btn">목록으로</a><br>
-  <a th:href="|/delete?board_no=${board.board_no}|" class="btn">삭제하기</a>
+  <div th:if="${user.userid == session.userid}"><a th:href="|/delete?board_no=${board.board_no}|" class="btn">삭제하기</a></div>
   <div th:if="${user.userid == session.userid}"><a th:href="|/updateForm?board_no=${board.board_no}|" class="btn">수정하기</a></div>
 </div>
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 작성 화면</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div th:replace="~{/common/navigation :: headerFragment}"></div>
+
+<div class="container">
+  <h2>게시글 작성 화면</h2>
+
+  <form action="/insertBoard">
+    <input type="hidden" name="user_no" th:value="${session.user_no}">
+    <table class="board_detail">
+      <caption>게시글 수정내용</caption>
+      <colgroup>
+        <col width="15%"/>
+        <col width="35%"/>
+        <col width="15%"/>
+        <col width="35%"/>
+      </colgroup>
+      <tbody>
+      <tr>
+        <th scope="row">글 번호</th>
+        <td ></td>
+        <th scope="row">조회수</th>
+        <td >0</td>
+      </tr>
+      <tr>
+        <th scope="row">작성자</th>
+        <td th:text="${session.userid}"></td>
+        <th scope="row">작성일</th>
+        <td ></td>
+      </tr>
+      <tr>
+        <th scope="row">제목</th>
+        <td colspan="3"><input type="text" id="title" name="title" /></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="view_text">
+          <input id="contents" name="content"  width="100%" style="height:400px" >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <input type="submit" value="작성하기" class="btn">
+  </form>
+
+  <a href="/boardList" class="btn">목록으로</a><br>
+</div>
+
+</body>
+</html>

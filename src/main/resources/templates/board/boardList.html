@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>게시판 리스트</title>
 </head>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
 <body>
 <div th:replace="~{/common/navigation :: headerFragment}"></div>
 
@@ -25,14 +26,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${list}">
-                <td th:text="${board.board_no}"></td>
+            <tr th:each="board, s : ${list}">
+                <td th:text="${s.index + 1}"></td>
                 <td><a th:href="|/read/?board_no=${board.board_no}|">[[ ${board.title} ]]</a></td>
                 <td th:text="${board.cnt}"></td>
                 <td th:text="${board.reg_date}"></td>
             </tr>
             </tbody>
         </table>
+        <div th:if="${session.userid}">
+            <a href="/boardForm" class="btn">글 작성</a>
+        </div>
     </div>
+
+
 </body>
 </html>

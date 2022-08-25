@@ -14,4 +14,10 @@ public class Board {
     private int cnt; //조회수
     private String reg_date; //작성일; 작성,수정시 업데이트
     private int user_no; //작성자; User table 회원번호 참조
+
+    public Board(String title, String content, int user_no) {
+        this.title = title;
+        this.content = content;
+        this.user_no = user_no;
+    }
 }

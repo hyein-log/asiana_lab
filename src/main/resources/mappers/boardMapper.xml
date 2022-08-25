@@ -51,4 +51,28 @@
 
         WHERE "board_no" = #{board_no}
     </update>
+
+    <insert id="insertBoard" parameterType="Board">
+        INSERT INTO
+                    "Board"("board_no", "title", "content", "user_no", "reg_date")
+        VALUES (board_seq.NEXTVAL, #{title}, #{content}, #{user_no}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
+    </insert>
+
+    <select id="selectListCommenyByNo" parameterType="int" resultType="Board">
+        SELECT *
+        FROM "Comment"
+        WHERE "BOARD_NO" = #{board_no}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM "Board"
+        WHERE "board_no" = #{board_no}
+    </delete>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE
+        FROM "Comment"
+        WHERE "board_no" = #{board_no}
+    </delete>
 </mapper>
