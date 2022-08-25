@@ -33,6 +33,12 @@ public class UserController {
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("userid", user.getUserid());
                 request.getSession().setAttribute("password", user.getPassword());
+
+                System.out.println("관리자 페이지 XX");
+                if(user.isAdmin()) {
+                    System.out.println("관리자 페이지");
+                    return "/admin/adminMain";
+                }
                 return "/reservation/main";
             }
         }

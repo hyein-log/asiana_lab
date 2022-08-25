@@ -26,5 +26,6 @@ public interface AdminService {
     //여정읽기
     Flight readFlight(int flight_no);
 
-    /* 회원 관리 */
+    //로그인시 어드민 확인
+    boolean checkAdmin(String userid);
 }
