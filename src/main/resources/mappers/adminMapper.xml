@@ -6,12 +6,12 @@
 
     <!-- 여정 관리 -->
     <insert id="insertFlight">
-        INSERT INTO flight(dep_date, departure, destination)
+        INSERT INTO "Flight"(dep_date, departure, destination)
         VALUES(#{dep_date}, #{departure}, #{destination})
     </insert>
     
     <delete id="deleteFlight" parameterType="int">
-        DELETE FROM flight
+        DELETE FROM "Flight"
         WHERE flight_no = #{flight_no}
     </delete>
 

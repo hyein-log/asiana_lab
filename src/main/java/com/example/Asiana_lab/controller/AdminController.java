@@ -28,7 +28,7 @@ public class AdminController {
 
     //여정 추가
     @PostMapping
-    public ResponseEntity<String> add(Flight flight, HttpServletRequest req) {
+    public ResponseEntity<String> add(@RequestBody Flight flight, HttpServletRequest req) {
         adminService.addFlight(flight);
         return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
     }
