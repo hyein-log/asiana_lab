@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 중복확인</title>
+</head>
+<body>
+<div style="text-align:center;">
+  <h3>* 이메일 중복확인 *</h3>
+  <form method="post"
+        action="/emailCheckProc"
+       >
+        이메일 : <input type="text" name="email" autofocus>
+    <input type="submit" onclick="close()" value="중복확인">
+  </form>
+</div>
+</body>
+<script>
+function close(){
+window.close();
+}
+</script>
+</html>

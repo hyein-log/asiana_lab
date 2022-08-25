@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public String findId(String email) throws Exception {
         User user = userDao.selectOneByEmail(email);
         String userid = user.getUserid();
-        return "redirect:/?userid="+userid;
+        return userid;
     }
 
 
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectIdByUserid(String userid) {
         User user = userDao.selectIdByUserid(userid);
-        if(userDao.selectIdByUserid(userid)!=null){
+        if(user!=null){
             return user;
         }
         return null;

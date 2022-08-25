@@ -94,7 +94,8 @@ button{
   <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
   <form action="/insert" >
   <div class="email">
-    <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요.">
+    <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요." th:value="${email}">
+    <input type="button" value="Email 중복확인" onclick="emailCheck()"></input>
     <div id="emailError" class="error"></div>
   </div>
   <div class="birthday">
@@ -107,7 +108,8 @@ button{
     </div>
   <div class="userid">
 
-    <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${userId}">
+    <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${session.userId}">
+    <input type="button" value="ID 중복확인" onclick="idCheck()"></input>
     <div id="useridError" class="error"></div>
         <br>
   </div>
@@ -131,80 +133,12 @@ button{
 </div>
 </body>
 <script>
-// 가입부분 체크
 
-function signUpCheck(){
-
-  let email = document.getElementById("email").value
-  let userid = document.getElementById("userid").value
-  let password = document.getElementById("password").value
-  let passwordCheck = document.getElementById("passwordCheck").value
-  let area = document.getElementById("area").value
-  let check = true;
-
-  // 이메일확인
-  if(email.includes('@')){
-    let emailId = email.split('@')[0]
-    let emailServer = email.split('@')[1]
-    if(emailId === "" || emailServer === ""){
-      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-      check = false
-    }
-    else{
-      document.getElementById("emailError").innerHTML=""
-    }
-  }else{
-    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-    check = false
-  }
-
-
-  // 이름확인
-  if(userid===""){
-    document.getElementById("useridError").innerHTML="이름이 올바르지 않습니다."
-    check = false
-  }else{
-    document.getElementById("useridError").innerHTML=""
-  }
-
-
-  // 비밀번호 확인
-  if(password !== passwordCheck){
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-    check = false
-  }else{
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-  if(password===""){
-    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordError").innerHTML=""
-  }
-  if(passwordCheck===""){
-    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-
-
-
-  if(check){
-    document.getElementById("emailError").innerHTML=""
-    document.getElementById("useridError").innerHTML=""
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-
-    //비동기 처리이벤트
-    setTimeout(function() {
-      alert("가입이 완료되었습니다.")
-  },0);
-  }
+function idCheck(){
+window.open("idCheck","idwin", "width=400", "height=350")
+}
+function emailCheck(){
+window.open("emailCheck","emailwin", "width=400", "height=350")
 }
 </script>
 </html>

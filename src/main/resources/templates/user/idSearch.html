@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디찾기</title>
+</head>
+<body>
+<form action="/idSearch2" method="post">
+    <label>Email을 입력하세요</label>
+    <input type="text" id="email" name="email" th:value="${email}"> <br>
+    <input type="submit" value="아이디 찾기" /> <br>
+    <button type="button" onclick="history.go(-1);">cancel</button>
+</form>
+</body>
+</html>

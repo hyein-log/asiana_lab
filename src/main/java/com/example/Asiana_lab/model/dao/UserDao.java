@@ -19,7 +19,7 @@ public interface UserDao {
     //유저아이디로 id 찾기
     User selectIdByUserid(String userid);
     //아이디 중복 체크
-    int idDuplicateCheck(String user_no);
+    int idDuplicateCheck(String userid);
     //이메일 중복 체크
     int emailDuplicateCheck(String email);
 

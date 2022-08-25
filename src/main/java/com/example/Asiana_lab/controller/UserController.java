@@ -7,10 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -105,6 +104,61 @@ public class UserController {
         userService.user_delete(user_no);
         request.getSession().invalidate();
         return "/reservation/main";
+    }
+
+    @RequestMapping("/idSearch")
+    public String idSearch() throws Exception {
+            return "/user/idSearch";
+
+    }
+
+    @RequestMapping("/idSearch2")
+    public String idSearch2(@RequestParam String email, Model model) throws Exception {
+        String userid = userService.findId(email);
+        model.addAttribute("userid", userid);
+        return "/user/findId";
+    }
+
+    @RequestMapping("/pwSearch")
+    public String pwSearch() throws Exception {
+        return "/user/pwSearch";
+
+    }
+    @RequestMapping("/pwSearch2")
+    public String pwSearch2(@RequestParam String userid, Model model) throws Exception {
+        String password = userService.selectIdByUserid(userid).getPassword();
+        model.addAttribute("password", password);
+        return "/user/findPw";
+
+    }
+
+     @RequestMapping("/idCheck")
+    public String idCheck() throws IOException {
+
+         return "/user/idCheck";
+
+    }@RequestMapping("/idCheckProc")
+    public String idCheckProc(HttpServletRequest request, @RequestParam String userid) throws IOException {
+        int dup = userService.idDuplicateCheck(userid);
+        if(dup==0){
+            request.getSession().setAttribute("userid", userid);
+            return "redirect:/user";
+        }
+         return "redirect:/user";
+    }
+    @RequestMapping("/emailCheck")
+    public String emailCheck() throws IOException {
+
+        return "/user/emailCheck";
+    }
+    @RequestMapping("/emailCheckProc")
+    public String emailCheckProc(HttpServletRequest request, @RequestParam String email) throws IOException {
+        int dup = userService.emailDuplicateCheck(email);
+        if(dup==0){
+            request.getSession().setAttribute("email", email);
+            return "redirect:/user";
+        }
+        return "redirect:/user";
     }
 }
 
