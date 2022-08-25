@@ -39,7 +39,7 @@ public class UserController {
                     System.out.println("관리자 페이지");
                     return "/admin/adminMain";
                 }
-                return "/reservation/main";
+                return "redirect:/";
             }
         }
         // /loginform 으로 이동
@@ -47,10 +47,9 @@ public class UserController {
     }
 
     @RequestMapping("/idDuplicateCheck")
-    public int idDuplicateCheck(@RequestParam(required = false) String userid){
+    public String idDuplicateCheck(@RequestParam(required = false) String userid){
         int user = userService.idDuplicateCheck(userid);
-        System.out.println("===================>user:"+user);
-        return user==1? 1:0;
+        return user==1? "redirect:/loginform?idDup=true" : "redirect:?loginform?isDup=false";
     }
 
     @RequestMapping("/changeId")
@@ -71,11 +70,17 @@ public class UserController {
     }
 
     @RequestMapping("/user")
-        public String user(@RequestParam(required = false) boolean idDup){
-        if(idDup){
-
-        }
+        public String user(){
         return "/user/joinForm";
     }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("userid");
+        request.getSession().removeAttribute("password");
+
+        return "redirect:/";
+    }
+
 }
 
