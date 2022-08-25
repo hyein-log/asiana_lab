@@ -26,8 +26,8 @@
         UPDATE "User" SET "password" = #{password} WHERE "userid" = #{userid}
     </update>
 
-    <delete id="user_delete" parameterType="String">
-        delete from "User" where "userid"=#{userid}
+    <delete id="user_delete" parameterType="int">
+        delete from "User" where "user_no"=#{user_no}
     </delete>
 
 </mapper>

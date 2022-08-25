@@ -33,7 +33,7 @@ public class UserController {
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("userid", user.getUserid());
                 request.getSession().setAttribute("password", user.getPassword());
-                request.getSession().setAttribute("user_no", user.getUser_no());
+
                 System.out.println("관리자 페이지 XX");
 
                 System.out.println(user.isAdmin() + "@@@@@@@@@@@@@@@@@@@@@@");
@@ -56,24 +56,24 @@ public class UserController {
     }
 
     @RequestMapping("/changeId")
-        public String changeId(@RequestParam String userid) throws Exception {
+    public String changeId(@RequestParam String userid) throws Exception {
         userService.changeId(userid);
         return "redirect:/";
     }
 
     @RequestMapping("/changePw")
-        public String changePw(@RequestParam String userpw) throws Exception {
+    public String changePw(@RequestParam String userpw) throws Exception {
         userService.changePw(userpw);
         return "redirect:/";
     }
     @RequestMapping("/userdelete")
-        public String userdelete(@RequestParam int user_no){
-        userService.delete(user_no);
+    public String userdelete(@RequestParam int user_no){
+        userService.user_delete(user_no);
         return "/reservation/main";
     }
 
     @RequestMapping("/user")
-        public String user(){
+    public String user(){
         return "/user/joinForm";
     }
 
@@ -85,5 +85,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    @RequestMapping("/mypage")
+    public String mypage(){
+        return "/user/mypage";
+    }
+
+
+    @RequestMapping("/infoUpdate")
+    public String infoUpdate(){return "/user/userUpdate";}
 }
 

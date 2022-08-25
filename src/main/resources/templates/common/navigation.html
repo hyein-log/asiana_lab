@@ -8,7 +8,7 @@
       <li th:unless="${session.userid}"><a href="/login">로그인</a></li>
       <li th:if="${session.userid}"><a href="/logout">로그아웃</a></li>
       <li th:unless="${session.userid}"><a href="/user">회원가입</a></li>
-      <li th:if="${session.userid}"><a href="#">마이페이지</a></li>
+      <li th:if="${session.userid}"><a href="/mypage">마이페이지</a></li>
     </ul>
   </nav>
 </header>

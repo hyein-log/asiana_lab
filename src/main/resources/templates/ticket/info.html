@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<h3>예약정보</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">예약 번호</th>
+        <th scope="col">좌석 등급</th>
+        <th scope="col">출발 시간</th>
+        <th scope="col">출발지</th>
+        <th scope="col">도착지</th>
+    </tr>
+    </thead>
+    <tbody th:each="ticket : ${tickets}">
+    <tr>
+        <td>[[${ticket.resv_no}]]</td>
+        <td>[[${ticket.booking_class}]]</td>
+        <td>[[${ticket.dep_time}]]</td>
+        <td>[[${ticket.departure}]]</td>
+        <td>[[${ticket.destination}]]</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

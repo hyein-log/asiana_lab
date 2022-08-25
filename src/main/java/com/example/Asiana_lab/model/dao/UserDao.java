@@ -11,7 +11,7 @@ public interface UserDao {
     void changeId(String user);
     void changePw(String user);
     //회원탈퇴
-    void delete(int user_no);
+    void user_delete(int user_no);
     //아이디로 유저 찾기
     User selectOneById(int user_no);
     //이메일로 유저 찾기
@@ -22,5 +22,6 @@ public interface UserDao {
     int idDuplicateCheck(String user_no);
     //이메일 중복 체크
     int emailDuplicateCheck(String email);
+
 
 }

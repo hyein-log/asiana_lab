@@ -15,6 +15,8 @@ public interface UserService  {
     //로그인
     String login(HttpServletRequest request, @RequestParam String userid, @RequestParam String password) throws Exception;
 
+    void user_delete(int user_no);
+
     //회원정보 수정
     void changeId(String password) throws Exception;
     //비밀번호 재설정
@@ -32,5 +34,4 @@ public interface UserService  {
     //회원 번호로 아이디 불러오기
     String findIdByNo(int user_no) throws Exception;
 
-    void delete(int user_no);
 }

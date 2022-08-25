@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보수정</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 11px;
+}
+
+html {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    width: 45%;
+    border: 1px solid black;
+}
+
+input{
+    border: 1px solid black;
+    border-radius: 3px;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.wrapper {
+    padding: 10px;
+}
+
+div {
+    padding-top: 3px;
+    padding-bottom: 8px;
+}
+
+.title {
+    text-align: center;
+    font-weight: 700;
+}
+
+.email input {
+    width: 100%;
+}
+
+.userid input {
+    width: 100%;
+}
+.birthday input {
+    width: 100%;
+}
+.passport input {
+    width: 100%;
+}
+.password input {
+    width: 100%;
+}
+
+.passwordCheck input {
+    width: 100%;
+}
+
+.signUp button {
+    width: 100%;
+    cursor:pointer;
+}
+
+button{
+    cursor: pointer;
+    height: 30px;
+}
+
+.error{
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}
+</style>
+</head>
+<!--userid
+password
+email
+passport
+birthday
+mileage-->
+<body>
+<div class="wrapper">
+  <div class="title"><h1 style="font-size: 21px;">회원 정보 수정</h1></div>
+    <div class="userid">
+      [[${session.userid}]] <input id="userid" name="userid" type="text" readonly>
+    </div>
+    <div class="email">
+      [[${email}]]<input id="email" name="email" type="text" readonly>
+    </div>
+    <div class="passport">
+      [[${passport}]] <input id="passport" name="passport" type="text" readonly>
+    </div>
+    <div class="birthday">
+      [[${birthday}]] <input id="birthday" name="birthday" type="text" readonly>
+    </div>
+    <div class="mileage">
+      [[${mileage}]]<input id="mileage" name="mileage" type="text" readonly>
+    </div>
+    <div class="line">
+      <hr>
+    </div>
+
+</div>
+</body>
+</html>
