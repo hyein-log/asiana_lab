@@ -10,11 +10,12 @@
 <h5>여정 선택</h5>
 <div >
     <table border="solid">
-        <th>리스트 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
+        <th>리스트</th><th>여정 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
         <tr th:each="flight, f: ${flights}">
             <td>
-                <a th:href="|/read_flight/${flight.flight_no}|" > [[ ${f.index+1} ]]</a>
+                <a th:href="|/read_flight/${flight.flight_no}|" onClick="login_check();" > [[ ${f.index+1} ]]</a>
             </td>
+            <td>[[ ${flight.flight_no} ]]</td>
             <td>[[ ${flight.dep_time} ]]</td>
 
                 <td>
@@ -36,4 +37,15 @@
 
 </div>
 </body>
+
+<script>
+    function login_check(){
+
+          if(window.sessionStorage.getItem("userid")==null){
+             alert("로그인이 필요한 항목입니다.");
+          }
+    }
+</script>
+
+
 </html>

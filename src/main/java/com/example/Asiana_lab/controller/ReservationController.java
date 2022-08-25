@@ -2,8 +2,10 @@ package com.example.Asiana_lab.controller;
 
 import com.example.Asiana_lab.model.dto.Flight;
 import com.example.Asiana_lab.model.dto.Seat;
+import com.example.Asiana_lab.model.dto.Ticket;
 import com.example.Asiana_lab.model.service.AirportService;
 import com.example.Asiana_lab.model.service.ReservationService;
+import com.example.Asiana_lab.model.service.TicketService;
 import com.example.Asiana_lab.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class ReservationController {
     @Autowired
     AirportService airportService;
 
+    @Autowired
+    TicketService ticketService;
+
     @RequestMapping("/")
     public String reservationMain(Model model){
         model.addAttribute("flights",reservationService.getFlightList());
@@ -33,8 +38,14 @@ public class ReservationController {
         return "/reservation/main";
     }
     @RequestMapping("/read_flight/{flight_no}")
-    public String openReservationDetail(@PathVariable("flight_no") int flight_no,
+    public String openReservationDetail(HttpServletRequest request,
+                                        @PathVariable("flight_no") int flight_no,
                                          Model model){
+        // 로그인
+        if(request.getSession().getAttribute("user_no") == null ){
+
+            return "redirect:/login";
+        }
         // 해당 여정의 좌석의 예약 가능 여부를 받아서 seatAvail 리스트에 저장
         boolean[] seatAvail = new boolean[10];
         ArrayList<Seat> seats = reservationService.getSeat(flight_no);
@@ -56,12 +67,18 @@ public class ReservationController {
     @RequestMapping("/reservationCommit")
     public String reservationCommit(HttpServletRequest request,@RequestParam(required = false, defaultValue = "") int flight_no,
                                     @RequestParam(required = false, defaultValue = "") int seat_no, Model model) throws Exception {
-        // 로그인
-        if(request.getSession().getAttribute("user_no") == null){
 
-            return "redirect:/login";
-        }
         int user_no = (int) request.getSession().getAttribute("user_no");
+
+
+        ArrayList<Ticket> tickets = ticketService.selectTicketInfo(user_no);
+        for(Ticket ticket: tickets){
+            if(ticket.getFlight_no() == flight_no){// 해당 여정 예약 정보가 있으면
+                return "redirect:/";
+
+            }
+        }
+
         String userid = userService.findIdByNo(user_no);
 
         // 예약 정보 DB insert
