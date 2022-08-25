@@ -25,4 +25,7 @@ public interface ReservationDao {
     // 예약할 좌석 DB에 insert
     void insertReservation(int user_no, int seat_no);
 
+    // 회원 정보와 좌석 정보로 예약 정보 select
+    int selectReservationByOthers(int user_no, int seat_no);
+
 }

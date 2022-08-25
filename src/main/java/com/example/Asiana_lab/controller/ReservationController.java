@@ -23,9 +23,6 @@ public class ReservationController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    User user;
-
     @RequestMapping("/")
     public String reservationMain(Model model){
         model.addAttribute("flights",reservationService.getFlightList());
@@ -59,12 +56,13 @@ public class ReservationController {
             int index = Integer.parseInt(entry.getKey().replace("ans",""));
             answers[index-1] = entry.getValue();
         }
-
         int seat_no = Integer.parseInt(answers[0]);
         int user_no = Integer.parseInt(answers[1]);
         String userid = userService.findIdByNo(user_no);
+
         // 예약 정보 DB insert
         reservationService.reserve(user_no,seat_no);
+        // 예약 번호 불러오기
         //reservationCommit에 data 넘기기
         model.addAttribute("flight",reservationService.getFlight(flight_no));
         model.addAttribute("user_id",userid);

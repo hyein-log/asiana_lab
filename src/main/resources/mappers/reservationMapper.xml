@@ -25,9 +25,15 @@
         FROM "Seat"
         WHERE "flight_no" = #{flight_no} and "seat_no" = #{seat_no}
     </select>
+    <!--예약시 reservation정보 DB에 insert-->
     <insert id="insertReservation" parameterType="int" >
         INSERT INTO RESERVATION
         VALUES(Reservation_seq.NEXTVAL,#{user_no}, #{seat_no})
     </insert>
-
+    <!--회원 정보와 좌석 정보로 예약 정보 select-->
+    <select id="selectReservationByOthers" resultType="int" parameterType="int">
+        SELECT *
+        FROM "Reservation"
+        WHERE "user_no" = #{user_no} and "seat_no" = #{seat_no}
+    </select>
 </mapper>

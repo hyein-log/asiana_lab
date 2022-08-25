@@ -17,5 +17,7 @@ public interface ReservationService {
     boolean getIsAvailable(int flight_no, int seat_no);
     // 예약 하기
     void reserve(int flight_no,int seat_no);
+    // 예약 정보 불러오기
+    int getReservationInfo(int user_no, int seat_no);
 
 }
