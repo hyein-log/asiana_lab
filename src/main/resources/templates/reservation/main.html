@@ -7,13 +7,14 @@
 <body>
 <div th:replace="~{/common/navigation :: headerFragment}"></div>
 <h1>항공권 예약</h1>
-<h5>여정 선택</h5>
+
 <div >
     <table border="solid">
+        <caption>여정 리스트</caption>
         <th>리스트</th><th>여정 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
         <tr th:each="flight, f: ${flights}">
             <td>
-                <a th:href="|/read_flight/${flight.flight_no}|" onClick="login_check();" > [[ ${f.index+1} ]]</a>
+                <a th:href="|/read_flight/${flight.flight_no}|" onClick="loginCheck();" id="sessionUserNo" th:data-value="${session.user_no}" > [[ ${f.index+1} ]]</a>
             </td>
             <td>[[ ${flight.flight_no} ]]</td>
             <td>[[ ${flight.dep_time} ]]</td>
@@ -39,10 +40,10 @@
 </body>
 
 <script>
-    function login_check(){
+    function loginCheck(){
 
-          if(window.sessionStorage.getItem("userid")==null){
-             alert("로그인이 필요한 항목입니다.");
+          if(document.getElementById("sessionUserNo").getAttribute('data-value')==null){
+             alert("로그인이 필요한 항목입니다.\n로그인 페이지로 이동합니다.");
           }
     }
 </script>

@@ -22,8 +22,20 @@
         <td>[[${ticket.resv_no}]]</td>
         <td>[[${ticket.booking_class}]]</td>
         <td>[[${ticket.dep_time}]]</td>
-        <td>[[${ticket.departure}]]</td>
-        <td>[[${ticket.destination}]]</td>
+        <td>
+            <th:block th:each="airport : ${airports}" >
+                <th:block th:if="${airport.airport_no == ticket.departure}">
+                    [[ ${airport.airport_name} ]]
+                </th:block>
+            </th:block>
+        </td>
+        <td>
+            <th:block th:each="airport : ${airports}" >
+                <th:block th:if="${airport.airport_no == ticket.destination}">
+                    [[ ${airport.airport_name} ]]
+                </th:block>
+            </th:block>
+        </td>
     </tr>
     </tbody>
 </table>
