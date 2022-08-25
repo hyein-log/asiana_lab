@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>회원가입 페이지</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <style>
   * {
     margin: 0px;
@@ -106,8 +106,10 @@ button{
       <div id="passportError" class="error"></div>
     </div>
   <div class="userid">
+
     <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${userId}">
     <div id="useridError" class="error"></div>
+        <br>
   </div>
   <div class="password">
     <input id="password" name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
@@ -129,7 +131,6 @@ button{
 </div>
 </body>
 <script>
-
 
 
 // 가입부분 체크

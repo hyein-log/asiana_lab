@@ -29,7 +29,7 @@ public class UserController {
     public String login(HttpServletRequest request, @RequestParam(required = false) String userid, @RequestParam(required = false) String password)  throws Exception {
         // 로그인 인증이 된다면 "/"이동
         if(userid!=null && password!=null) {
-            User user = userService.selectOneById(userid);
+            User user = userService.selectIdByUserid(userid);
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("userid", user.getUserid());
                 request.getSession().setAttribute("password", user.getPassword());
@@ -41,9 +41,10 @@ public class UserController {
     }
 
     @RequestMapping("/idDuplicateCheck")
-    public String idDuplicateCheck(@RequestParam(required = false) String userid){
+    public int idDuplicateCheck(@RequestParam(required = false) String userid){
         int user = userService.idDuplicateCheck(userid);
-        return user==1? "redirect:/loginform?idDup=true" : "redirect:?loginform?isDup=false";
+        System.out.println("===================>user:"+user);
+        return user==1? 1:0;
     }
 
     @RequestMapping("/changeId")
@@ -64,7 +65,10 @@ public class UserController {
     }
 
     @RequestMapping("/user")
-        public String user(){
+        public String user(@RequestParam(required = false) boolean idDup){
+        if(idDup){
+
+        }
         return "/user/joinForm";
     }
 }

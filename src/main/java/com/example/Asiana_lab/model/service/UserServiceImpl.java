@@ -64,7 +64,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectOneById(String userid) throws Exception {
+    public User selectOneById(int user_no) throws Exception {
+        return null;
+    }
+
+    @Override
+    public User selectIdByUserid(String userid) {
         User user = userDao.selectIdByUserid(userid);
         if(userDao.selectIdByUserid(userid)!=null){
             return user;

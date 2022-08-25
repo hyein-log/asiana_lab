@@ -26,8 +26,9 @@ public interface UserService  {
     //회원 탈퇴
     String signOut(HttpServletRequest request, String userid) throws Exception;
     //아이디로 회원 불러오기
-    User selectOneById(String userid) throws Exception;
+    User selectOneById(int user_no) throws Exception;
 
+    User selectIdByUserid(String userid);
     //회원 번호로 아이디 불러오기
     String findIdByNo(int user_no) throws Exception;
 
