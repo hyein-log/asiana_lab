@@ -11,8 +11,18 @@
 
 여정 번호: [[${flight.flight_no}]]<br>
 출발 일자: [[${flight.dep_time}]]<br>
-출발 공항번호: [[${flight.departure}]]<br>
-도착지 공항번호: [[${flight.destination}]]<br>
+출발지: <th:block th:each="airport : ${airports}" >
+    <th:block th:if="${airport.airport_no == flight.departure}">
+        [[ ${airport.airport_name} ]]
+    </th:block>
+</th:block><br>
+도착지: <td>
+    <th:block th:each="airport : ${airports}" >
+        <th:block th:if="${airport.airport_no == flight.destination}">
+            [[ ${airport.airport_name} ]]
+        </th:block>
+    </th:block>
+</td><br>
 좌석 번호: [[${seat_no}]]<br>
 <a href="/">메인으로 돌아가기</a>
 </body>

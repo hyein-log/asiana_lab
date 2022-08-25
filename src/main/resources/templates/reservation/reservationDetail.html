@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>여행 상세 화면</title>
 </head>
 <body>
     <h2>예약 상세 페이지</h2>
-    <table>
+    <table border="solid">
         <caption>예약 상세 내용</caption>
         <th>여정 번호</th>
         <th>출발 일자</th>
@@ -15,10 +15,25 @@
         <tr>
             <td th:text="${flight.flight_no}"></td>
             <td th:text="${flight.dep_time}"></td>
-            <td th:text="${flight.departure}"></td>
-            <td th:text="${flight.destination}"></td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.departure}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.destination}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
         </tr>
     </table>
+    </br>
+    <hr>
+    <h5> 좌석 선택</h5>
     <form action="/reservationCommit">
         <th:block th:each="s, sIndex : ${seatAvail}">
             <th:block th:if="${s}">
@@ -32,8 +47,6 @@
                 <br>
             </th:block>
         </th:block>
-        <p>회원 번호를 입력하세요: <input type="text" name="user_no">
-        </p>
         <button type="submit">제출</button>
         <input type="hidden" name="flight_no" th:value="${flight.flight_no}">
     </form>

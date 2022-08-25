@@ -13,14 +13,24 @@
         <th>리스트 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
         <tr th:each="flight, f: ${flights}">
             <td>
-                <a th:href="|/read_flight/${flight.flight_no}|" target="_blank"> [[ ${f.index+1} ]]</a>
+                <a th:href="|/read_flight/${flight.flight_no}|" > [[ ${f.index+1} ]]</a>
             </td>
             <td>[[ ${flight.dep_time} ]]</td>
-            <td>[[ ${flight.departure} ]]</td>
-            <td>[[ ${flight.destination} ]]</td>
 
-
-
+                <td>
+                    <th:block th:each="airport : ${airports}" >
+                        <th:block th:if="${airport.airport_no == flight.departure}">
+                            [[ ${airport.airport_name} ]]
+                        </th:block>
+                    </th:block>
+                </td>
+                <td>
+                    <th:block th:each="airport : ${airports}" >
+                        <th:block th:if="${airport.airport_no == flight.destination}">
+                            [[ ${airport.airport_name} ]]
+                        </th:block>
+                    </th:block>
+                </td>
         </tr>
     </table>
 

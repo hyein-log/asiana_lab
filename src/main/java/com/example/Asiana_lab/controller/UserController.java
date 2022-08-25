@@ -33,7 +33,7 @@ public class UserController {
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("userid", user.getUserid());
                 request.getSession().setAttribute("password", user.getPassword());
-
+                request.getSession().setAttribute("user_no", user.getUser_no());
                 System.out.println("관리자 페이지 XX");
 
                 System.out.println(user.isAdmin() + "@@@@@@@@@@@@@@@@@@@@@@");
