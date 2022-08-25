@@ -1,6 +1,7 @@
 package com.example.Asiana_lab.controller;
 
 import com.example.Asiana_lab.model.dto.Ticket;
+import com.example.Asiana_lab.model.service.AirportService;
 import com.example.Asiana_lab.model.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,14 @@ import java.util.ArrayList;
 public class TicketController {
     @Autowired
     TicketService ticketService;
-
+    @Autowired
+    AirportService airportService;
     @RequestMapping("/reserveInfo" )
     public String reserveInfo(HttpServletRequest request, Model model){
         int user_no = (int) request.getSession().getAttribute("user_no");
         ArrayList<Ticket> tickets = ticketService.selectTicketInfo(user_no);
         model.addAttribute("tickets", tickets);
+        model.addAttribute("airports",airportService.getAirportList());
         return "/ticket/info";
     }
 }

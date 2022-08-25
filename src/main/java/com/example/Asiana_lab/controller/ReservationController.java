@@ -54,12 +54,19 @@ public class ReservationController {
             int seat_no = seat.getSeat_no();
             if (!reservationService.getIsAvailable(flight_no,seat_no)){//예약이 불가능 하다면
                 seatAvail[seat_no-1] = true;
-                System.out.println("예약 불가능한 좌석:" + seat_no);
             }
         }
-
+        // 로그인 한 회원이 해당 여정을 예약했다면 예약 못한다는 정보 전달.
+        int user_no = (int) request.getSession().getAttribute("user_no");
+        ArrayList<Ticket> tickets = ticketService.selectTicketInfo(user_no);
+        for(Ticket ticket: tickets){
+            if(ticket.getFlight_no() == flight_no){// 해당 여정 예약 정보가 있으면
+                model.addAttribute("reservDisable","이미 예약된 여정입니다.\n메인페이지로 이동합니다.");
+            }
+        }
         model.addAttribute("flight",reservationService.getFlight(flight_no));
         model.addAttribute("seatAvail",seatAvail);
+        model.addAttribute("seats",reservationService.getSeat(flight_no));
         model.addAttribute("airports",airportService.getAirportList());
         return "/reservation/reservationDetail";
     }

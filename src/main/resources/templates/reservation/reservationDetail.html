@@ -35,24 +35,30 @@
     <hr>
     <h5> 좌석 선택</h5>
     <form action="/reservationCommit">
-        <th:block th:each="s, sIndex : ${seatAvail}">
-            <th:block th:if="${s}">
-            <input type="checkbox" th:value="${sIndex.index+1}" disabled checked>
-            [[${sIndex.index+1}]]
-            <br>
+        <th:block th:each="s, sIndex : ${seats}">
+            <th:block th:if="${s.isAvailable.equals('n')}">
+                <input type="radio" th:value="${sIndex.index+1}" disabled checked>
+                [[${sIndex.index+1}]] [[${s.booking_class}]]  [[${s.price}]]원
+                <br>
             </th:block>
-            <th:block th:unless="${s}">
-                <input type="checkbox" name="seat_no" th:value="${sIndex.index+1}">
-                [[${sIndex.index+1}]]
+            <th:block th:unless="${s.isAvailable.equals('n')}">
+                <input type="radio" name="seat_no" th:value="${sIndex.index+1}">
+                [[${sIndex.index+1}]] [[${s.booking_class}]]  [[${s.price}]]원
                 <br>
             </th:block>
         </th:block>
-        <button id="alertbtn" type="submit">제출</button>
+
+        <button type="submit" id="access" th:value="${reservDisable}">제출</button>
         <input type="hidden" name="flight_no" th:value="${flight.flight_no}">
     </form>
 </body>
 <script>
+    document.getElementById("access").addEventListener('click',reservDupCheck);
+    function reservDupCheck(){
 
+            if(document.getElementById("access").getAttribute('value') != null)
+             alert(document.getElementById("access").getAttribute('value'));
+    }
 </script>
 
 </html>
