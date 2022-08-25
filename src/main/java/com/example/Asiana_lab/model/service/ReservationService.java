@@ -19,5 +19,7 @@ public interface ReservationService {
     void reserve(int flight_no,int seat_no);
     // 예약 정보 불러오기
     int getReservationInfo(int user_no, int seat_no);
+    // 좌석 정보 업데이트
+    void updateSeat(int flight_no, int seat_no);
 
 }

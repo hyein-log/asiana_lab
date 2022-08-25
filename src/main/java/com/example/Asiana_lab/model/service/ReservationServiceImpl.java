@@ -34,7 +34,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public boolean getIsAvailable(int flight_no, int seat_no) {
         Seat seat = reservationDao.selectOneSeat(flight_no,seat_no);
-        if(seat.getIsAvailable().equals('y')){
+        if(seat.getIsAvailable().equals("y")){
             return true;
         }
         return false;
@@ -49,4 +49,9 @@ public class ReservationServiceImpl implements ReservationService {
     //예약정보 불러오기
     @Override
     public int getReservationInfo(int user_no, int seat_no) { return reservationDao.selectReservationByOthers(user_no,seat_no);}
+
+    @Override
+    public void updateSeat(int flight_no, int seat_no) {
+        reservationDao.updateSeatAvailable(flight_no,seat_no);
+    }
 }

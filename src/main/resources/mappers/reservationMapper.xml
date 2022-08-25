@@ -15,7 +15,7 @@
         WHERE  "flight_no" = #{flight_no}
     </select>
      <!--해당 여정의 모든 좌석(Seat)정보 불러오기-->
-    <select id="selectAllSeat" resultType="Flight" parameterType="int">
+    <select id="selectAllSeat" resultType="Seat" parameterType="int">
         SELECT *
         FROM "Seat"
     </select>
@@ -27,7 +27,7 @@
     </select>
     <!--예약시 reservation정보 DB에 insert-->
     <insert id="insertReservation" parameterType="int" >
-        INSERT INTO RESERVATION
+        INSERT INTO "Reservation"
         VALUES(Reservation_seq.NEXTVAL,#{user_no}, #{seat_no})
     </insert>
     <!--회원 정보와 좌석 정보로 예약 정보 select-->
@@ -36,4 +36,10 @@
         FROM "Reservation"
         WHERE "user_no" = #{user_no} and "seat_no" = #{seat_no}
     </select>
+    <!--예약시 좌석정보 DB update-->
+    <update id="updateSeatAvailable" parameterType="int">
+        UPDATE "Seat"
+        SET "isAvailable" = 'n'
+        WHERE "seat_no" = #{seat_no}
+    </update>
 </mapper>

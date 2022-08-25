@@ -28,4 +28,7 @@ public interface ReservationDao {
     // 회원 정보와 좌석 정보로 예약 정보 select
     int selectReservationByOthers(int user_no, int seat_no);
 
+    // 예약시 좌석정보 DB update
+    void updateSeatAvailable(int flight_no, int seat_no);
+
 }

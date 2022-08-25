@@ -12,8 +12,8 @@
     <select id="selectIdByUserid" parameterType="String" resultType="User">
         select * from "User" u  where "userid"  = #{userid}
     </select>
-    <select id="selectOneById" parameterType="String" resultType="User">
-        select * from "User" u  where "userid"  = #{userid}
+    <select id="selectOneById" parameterType="int" resultType="User">
+        select * from "User" u  where "user_no"  = #{user_no}
     </select>
     <select id="selectOneByEmail" parameterType="String" resultType="User">
         select * from "User" u  where "userid"  = #{userid}
