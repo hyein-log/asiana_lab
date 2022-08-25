@@ -2,6 +2,9 @@ package com.example.Asiana_lab.model.dao;
 
 
 import com.example.Asiana_lab.model.dto.Board;
+import com.example.Asiana_lab.model.dto.Comment;
+import com.example.Asiana_lab.model.dto.File;
+import com.example.Asiana_lab.model.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,8 +26,14 @@ public interface BoardDao {
 
     //게시글수정을 위한 리뷰 하나 select
     //param: board_no
-    Board selectOne(int id);
+    Board selectOneByNo(int board_no);
 
     //유저 탈퇴시 게시글 전체 삭제 기능
     void userDelete(String userid);
+
+    List<Comment> findAllByBoard(int board_no);
+
+    User findUserByBoard(int user_no);
+
+    List<File> findFilesByBoard(int board_no);
 }

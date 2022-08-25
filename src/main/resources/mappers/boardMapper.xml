@@ -3,10 +3,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.Asiana_lab.model.dao.BoardDao">
-
     <select id="findAll" resultType="Board">
         SELECT *
         FROM "Board"
+        ORDER BY "board_no"
     </select>
 
+    <select id="selectOneByNo" parameterType="int" resultType="Board">
+        SELECT *
+        FROM "Board"
+        WHERE "board_no" = #{board_no}
+    </select>
+
+    <select id="findAllByBoard" parameterType="int" resultType="Comment">
+        SELECT *
+        FROM "Comment"
+        WHERE "BOARD_NO" = #{board_no}
+        ORDER BY "COMMENT_NO"
+    </select>
+
+    <select id="findUserByBoard" parameterType="int" resultType="User">
+        SELECT *
+        FROM "User"
+        WHERE "user_no" = #{user_no}
+    </select>
+
+    <select id="findFilesByBoard" parameterType="int" resultType="File">
+        SELECT *
+        FROM "File"
+        WHERE "BOARD_NO" = #{board_no}
+    </select>
 </mapper>
