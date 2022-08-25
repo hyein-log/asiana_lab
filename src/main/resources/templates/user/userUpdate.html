@@ -97,19 +97,19 @@ mileage-->
 <div class="wrapper">
   <div class="title"><h1 style="font-size: 21px;">회원 정보 수정</h1></div>
     <div class="userid">
-      [[${session.userid}]] <input id="userid" name="userid" type="text" readonly>
+      아이디<input id="userid" name="userid" type="text" th:value="${user.userid}" readonly>
     </div>
     <div class="email">
-      [[${email}]]<input id="email" name="email" type="text" readonly>
+      이메일<input id="email" name="email" type="text" th:value="${user.email}" readonly>
     </div>
     <div class="passport">
-      [[${passport}]] <input id="passport" name="passport" type="text" readonly>
+       여권 번호<input id="passport" name="passport" type="text" th:value="${user.passport}" readonly>
     </div>
     <div class="birthday">
-      [[${birthday}]] <input id="birthday" name="birthday" type="text" readonly>
+       생년월일<input id="birthday" name="birthday" type="text" th:value="${user.birthday}" readonly>
     </div>
     <div class="mileage">
-      [[${mileage}]]<input id="mileage" name="mileage" type="text" readonly>
+      마일리지<input id="mileage" name="mileage" type="text" th:value="${user.mileage}" readonly>
     </div>
     <div class="line">
       <hr>

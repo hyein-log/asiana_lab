@@ -93,6 +93,18 @@ public class UserController {
 
 
     @RequestMapping("/infoUpdate")
-    public String infoUpdate(){return "/user/userUpdate";}
+    public String infoUpdate(HttpServletRequest request, Model model){
+        String userid = (String) request.getSession().getAttribute("userid");
+        model.addAttribute("user",userService.selectIdByUserid(userid));
+        return "/user/userUpdate";
+    }
+
+    @RequestMapping("/userDelete")
+    public String userDelete(HttpServletRequest request){
+        int user_no = (int) request.getSession().getAttribute("user_no");
+        userService.user_delete(user_no);
+        request.getSession().invalidate();
+        return "/reservation/main";
+    }
 }
 
