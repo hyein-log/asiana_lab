@@ -63,11 +63,12 @@ public class ReservationController {
         // 예약 정보 DB insert
         reservationService.reserve(user_no,seat_no);
         // 예약 번호 불러오기
+        int reservatio_no = reservationService.getReservationInfo(user_no,seat_no);
         //reservationCommit에 data 넘기기
         model.addAttribute("flight",reservationService.getFlight(flight_no));
         model.addAttribute("user_id",userid);
         model.addAttribute("seat_no",seat_no);
-
+        model.addAttribute("reservation_no",reservatio_no);
 
         return "reservationCommit";
     }

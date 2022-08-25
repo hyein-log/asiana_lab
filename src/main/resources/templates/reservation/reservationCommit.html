@@ -5,7 +5,15 @@
     <title>예약 완료 페이지</title>
 </head>
 <body>
-<h1>예약이 정상적으로 완료 되었습니다.</h1>
-예약 번호
+<h1>예약이 정상적으로 완료 되었습니다.</h1><br><br><br>
+<h4>예약 상세 내역</h4>
+예약 번호: [[${reservation_no}]]
+
+여정 번호: [[${flight.flight_no}]]
+출발 일자: [[${flight.dep_date}]]
+출발 공항번호: [[${flight.departure}]]
+도착지 공항번호: [[${flight.destination}]]
+좌석 번호: [[${seat_no}]]
+<a href="/">메인으로 돌아가기</a>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public boolean getIsAvailable(int flight_no, int seat_no) {
         Seat seat = reservationDao.selectOneSeat(flight_no,seat_no);
-        if(seat.isAvailable()){
+        if(seat.getIsAvailable().equals('y')){
             return true;
         }
         return false;

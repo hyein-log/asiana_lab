@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Seat {
     private int seat_no; //좌석번호
     private String booking_class; //좌석등급
-    private boolean isAvailable; //예약가능여부
+    private String isAvailable; //예약가능여부
     private int price; //가격
     private int flight_no; //여정번호
 }

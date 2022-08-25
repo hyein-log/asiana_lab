@@ -9,12 +9,18 @@
 <h1>항공권 예약</h1>
 <h5>여정 선택</h5>
 <div >
-    <table>
-        <tr th:each="flight: ${flights}">
-            <td href="|/read_flight/${flight.flight_no}" target="_blank"> 여정 날짜: [[ ${flight.dep_date}]]
-                출발지: [[ ${flight.departure}]]
-                도착지: [[${flight.destination}]]
+    <table border="solid">
+        <th>리스트 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
+        <tr th:each="flight, f: ${flights}">
+            <td>
+                <a th:href="|/read_flight/${flight.flight_no}|" target="_blank"> [[ ${f.index+1} ]]</a>
             </td>
+            <td>[[ ${flight.dep_time} ]]</td>
+            <td>[[ ${flight.departure} ]]</td>
+            <td>[[ ${flight.destination} ]]</td>
+
+
+
         </tr>
     </table>
 

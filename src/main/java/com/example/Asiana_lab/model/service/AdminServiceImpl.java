@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService{
     public boolean modifyFlight(Flight flight) {
         Flight originFlight = adminDao.selectOne((flight.getFlight_no()));
 
-        originFlight.setDep_date(flight.getDep_date());
+        originFlight.setDep_time(flight.getDep_time());
         originFlight.setDeparture(flight.getDeparture());
         originFlight.setDestination(flight.getDestination());
 
