@@ -20,4 +20,6 @@ public interface BoardService {
     List<File> findFilesByBoard(int board_no);
 
     void addCnt(int board_no);
+
+    void updateBoard(Board board);
 }

@@ -36,35 +36,36 @@
     </tr>
     <tr>
       <th scope="row">제목</th>
-      <td colspan="3"><input type="text" id="title" name="title" th:value="${board.title}"/></td>
+      <td colspan="3"><input type="text" id="title" name="title" th:value="${board.title}" readonly/></td>
     </tr>
     <tr>
       <td colspan="4" class="view_text">
-        <textarea title="내용" id="contents" name="contents" th:text="${board.content}"></textarea>
+        <textarea title="내용" id="contents" name="contents" th:text="${board.content}" readonly></textarea>
       </td>
     </tr>
     </tbody>
-    <table border="2">
-      <caption>댓글</caption>
-      <colgroup>
-        <col width="15%" />
-        <col width="35%" />
-        <col width="15%" />
-        <col width="35%" />
-      </colgroup>
-      <tbody>
-      <tr>
-        <th:block th:each="comment : ${commentByBoard}">
-        <th scope="row">댓글 번호</th>
-        <td th:text="${comment.comment_no}"></td>
-        <th scope="row">내용</th>
-        <td th:text="${comment.content}"></td>
-        </th:block>
-      </tr>
-      </tbody>
-    </table>
   </table>
-  <form action="/comment/insert">
+  <table class="board_detail" >
+    <caption>댓글</caption>
+    <colgroup>
+      <col width="15%" />
+      <col width="35%" />
+      <col width="15%" />
+      <col width="35%" />
+    </colgroup>
+    <tbody>
+    <thead>
+    <th scope="col">댓글번호</th>
+    <th scope="col">내용</th>
+  </thead>
+    <tbody>
+    <tr th:each="comment, s : ${commentByBoard}">
+        <td colspan="1"  th:text="${s.index + 1}"></td>
+        <td colspan="3"  th:text="${comment.content}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <form action="/comment/insert" th:if="${session.userid}">
     <label for="content">댓글 : </label>
     <input type="hidden" name="board_no" th:value="${board.board_no}">
     <input type="text" id="content" name="content">
@@ -72,6 +73,7 @@
   </form>
   <a href="/boardList" class="btn">목록으로</a><br>
   <a th:href="|/delete?board_no=${board.board_no}|" class="btn">삭제하기</a>
+  <div th:if="${user.userid == session.userid}"><a th:href="|/updateForm?board_no=${board.board_no}|" class="btn">수정하기</a></div>
 </div>
 
 </body>

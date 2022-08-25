@@ -81,4 +81,33 @@ public class BoardController {
         return "/board/boardDetail";
     }
 
+    @RequestMapping("/updateForm")
+    public String updateForm(@RequestParam int board_no, Model model) {
+
+        Board board = boardService.selectOneByNo(board_no);
+        model.addAttribute("board", board);
+
+        int user_no = board.getUser_no();
+        User user = boardService.findUserByBoard(user_no);
+        model.addAttribute("user", user);
+
+        return "/board/boardUpdateForm";
+    }
+
+    @RequestMapping("/update")
+    public String update(@RequestParam int board_no, @RequestParam String title,
+                         @RequestParam String content) {
+
+        System.out.println(String.format("%d %s %s", board_no, title, content));
+
+        Board board = boardService.selectOneByNo(board_no);
+
+        board.setTitle(title);
+        board.setContent(content);
+
+        boardService.updateBoard(board);
+
+        return "redirect:/boardList";
+    }
+
 }

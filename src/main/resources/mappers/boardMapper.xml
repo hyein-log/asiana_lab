@@ -41,4 +41,14 @@
 
         WHERE "board_no" = #{board_no}
     </update>
+
+    <update id="updateBoard" parameterType="Board">
+        UPDATE "Board"
+        SET
+            "title" = #{title},
+            "content" = #{content},
+            "reg_date" = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
+
+        WHERE "board_no" = #{board_no}
+    </update>
 </mapper>

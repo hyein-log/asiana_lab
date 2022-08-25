@@ -17,7 +17,8 @@ public class CommentController {
     CommentService commentService;
 
     @RequestMapping("comment/insert")
-    public String insert(@RequestParam String content, @RequestParam int board_no, Model model) {
+    public String insert(@RequestParam String content, @RequestParam int board_no,
+                         @RequestParam String userid, Model model) {
 
         Map<String, String> map = new HashMap<>();
         map.put("content", content);

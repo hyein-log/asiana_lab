@@ -48,4 +48,9 @@ public class BoardServiceImpl implements BoardService {
     public void addCnt(int board_no) {
         boardDao.addCnt(board_no);
     }
+
+    @Override
+    public void updateBoard(Board board) {
+        boardDao.updateBoard(board);
+    }
 }
