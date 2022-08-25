@@ -32,7 +32,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
     // 특정 좌석 예약 가능여부
     @Override
-    public boolean setIsAvailable(int flight_no, int seat_no) {
+    public boolean getIsAvailable(int flight_no, int seat_no) {
         Seat seat = reservationDao.selectOneSeat(flight_no,seat_no);
         if(seat.isAvailable()){
             return true;

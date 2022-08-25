@@ -13,7 +13,7 @@ public interface UserDao {
     //회원탈퇴
     void user_delete(int user_no);
     //아이디로 유저 찾기
-    User selectOneById(String user_no);
+    User selectOneById(int user_no);
     //이메일로 유저 찾기
     User selectOneByEmail(String email);
     //유저아이디로 id 찾기

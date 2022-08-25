@@ -80,4 +80,14 @@ public class UserServiceImpl implements UserService {
     public void changeId(String password) throws Exception {
         userDao.user_updateUserId(password);
     }
+
+    @Override
+    public String findIdByNo(int user_no) throws Exception {
+        User user = userDao.selectOneById(user_no);
+        String userid = user.getUserid();
+        return userid;
+    }
+
+
+
 }
