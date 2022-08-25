@@ -6,13 +6,15 @@ import com.example.Asiana_lab.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
-@RequestMapping("/flight")
+@Controller
+@RequestMapping("/admin")
 public class AdminController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
@@ -22,7 +24,7 @@ public class AdminController {
     private UserService userService;
 
     //여정 추가
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<String> add(Flight flight, HttpServletRequest req) {
         adminService.addFlight(flight);
         return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
@@ -48,18 +50,28 @@ public class AdminController {
         return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
-    //여정 조회
-    @GetMapping("/all")
-    public ResponseEntity<List<Flight>> list() {
-        List<Flight> flights = adminService.getFlightList();
+    //여정 조회 (어드민 메인 페이지)
+    @GetMapping("/main/{id}")
+    public String list(@PathVariable("id") String userid, Model model) {
+        boolean isAdmin = adminService.checkAdmin(userid);
+        if(isAdmin) {
+            model.addAttribute("flightList", adminService.getFlightList());
+            return "/admin/adminMain";
+        }
+        return "/reservation/main";
+    }
 
-        return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
+    //여정 상세 및 등록 폼 호출
+    @GetMapping("/detail")
+    public String detail(@RequestParam(value = "flight_no") int flight_no, Model model) {
+        model.addAttribute("flightDetail", adminService.getFlightById(flight_no));
+        return "/admin/form";
     }
 
     //여정 선택
     @GetMapping("/{id}")
-    public ResponseEntity<Flight> selectReview(@PathVariable("id") int flight_id) {
-        Flight flight = adminService.getFlightById(flight_id);
+    public ResponseEntity<Flight> selectFlight(@PathVariable("id") int flight_no) {
+        Flight flight = adminService.getFlightById(flight_no);
 
         return new ResponseEntity<Flight>(flight, HttpStatus.OK);
     }

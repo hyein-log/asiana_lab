@@ -1,17 +1,25 @@
 package com.example.Asiana_lab.model.service;
 
 import com.example.Asiana_lab.model.dao.AdminDao;
+import com.example.Asiana_lab.model.dao.ReservationDao;
+import com.example.Asiana_lab.model.dao.UserDao;
 import com.example.Asiana_lab.model.dto.Flight;
+import com.example.Asiana_lab.model.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminDao adminDao;
-
+    @Autowired
+    private ReservationDao reservationDao;
+    @Autowired
+    private UserDao userDao;
 
     //여정추가
     @Override
@@ -41,9 +49,7 @@ public class AdminServiceImpl implements AdminService{
     //전체 여정조회
     @Override
     public List<Flight> getFlightList() {
-        //FlightDao 작성 완성시 import -> Autowired
-        //return flightDao.selectAll...
-        return null;
+        return adminDao.selectAllFlight();
     }
 
     //여정 아이디 얻어오기
@@ -56,5 +62,14 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Flight readFlight(int flight_no) {
         return adminDao.selectOne(flight_no);
+    }
+
+    @Override
+    public boolean checkAdmin(@RequestParam String userid) {
+        User user = userDao.selectIdByUserid(userid);
+        if(user.isAdmin()){
+            return true;
+        }
+        return false;
     }
 }

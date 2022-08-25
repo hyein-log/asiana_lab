@@ -23,6 +23,13 @@
         WHERE flight_no = #{flight_no}
     </update>
 
+    <select id="selectAllFlight" resultType="flight">
+        SELECT *
+        FROM "Flight"
+    </select>
+
+
+
     <!-- 회원 관리 -->
     <delete id="deleteUser" parameterType="int">
         DELETE FROM "Flight"
