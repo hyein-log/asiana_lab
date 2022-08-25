@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 @Controller
 public class UserController {
@@ -18,7 +19,6 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/insert")
-    @ResponseBody
     public String insert(HttpServletRequest request,@RequestParam(required = false) String userid, @RequestParam(required = false) String password, @RequestParam(required = false) String birthday
             , @RequestParam(required = false) String email, @RequestParam(required = false) String passport) throws Exception {
         userService.join(new User(userid, password,email,passport,birthday));
