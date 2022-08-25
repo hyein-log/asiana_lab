@@ -42,7 +42,7 @@ public class ReservationController {
         return "/reservation/reservationDetail";
     }
 
-    @RequestMapping("/reservationCommit/${flight_no}")
+    @RequestMapping("/reservationCommit/{flight_no}")
     public String reservationCommit(@PathVariable("flight_no") int flight_no,
                                     @RequestParam int seat_no, Model model){
         // 예약 정보 DB insert

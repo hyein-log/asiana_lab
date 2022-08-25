@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Builder //user 객체를 생성할 때 가독성이 좋게 코드를 짤 수 있다.
 public class User {
     private int user_no; //회원번호
@@ -18,4 +19,12 @@ public class User {
     private String birthday; //생일
     private int mileage; //마일리지
     private boolean isAdmin; //관리자 여부 (true: admin, false: 일반사용자)
+
+    public User(String userid, String password, String email, String passport, String birthday) {
+        this.userid = userid;
+        this.password = password;
+        this.email = email;
+        this.passport = passport;
+        this.birthday = birthday;
+    }
 }

@@ -18,11 +18,11 @@
     <select id="selectOneByEmail" parameterType="String" resultType="User">
         select * from "User" u  where "userid"  = #{userid}
     </select>
-    <update id="user_updateUserId" parameterType="String">
+    <update id="changeId" parameterType="String">
         UPDATE "User" SET "userid" = #{userid} WHERE "password" = #{password}
     </update>
 
-    <update id="user_updateUserPw" parameterType="String">
+    <update id="changePw" parameterType="String">
         UPDATE "User" SET "password" = #{password} WHERE "userid" = #{userid}
     </update>
 

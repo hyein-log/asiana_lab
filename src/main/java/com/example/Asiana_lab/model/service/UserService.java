@@ -28,5 +28,5 @@ public interface UserService  {
     //아이디로 회원 불러오기
     User selectOneById(String userid) throws Exception;
 
-
+    void delete(int user_no);
 }

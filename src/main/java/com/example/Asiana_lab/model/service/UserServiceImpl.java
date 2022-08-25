@@ -54,10 +54,6 @@ public class UserServiceImpl implements UserService {
         return "redirect:/?userid="+userid;
     }
 
-    @Override
-    public void changePw(String userid) throws Exception {
-        userDao.user_updateUserPw(userid);
-    }
 
 
     @Override
@@ -77,7 +73,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void delete(int user_no) {
+        userDao.delete(user_no);
+    }
+
+    @Override
     public void changeId(String password) throws Exception {
-        userDao.user_updateUserId(password);
+        userDao.changeId(password);
+    }
+
+    @Override
+    public void changePw(String password) throws Exception {
+        userDao.changePw(password);
     }
 }

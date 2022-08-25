@@ -19,20 +19,21 @@ public class UserController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public String insert() throws Exception {
-        userService.join(new User(3,"123","12","12","12x", "123", 0, false));
-        return "result";
+    public String insert(HttpServletRequest request,@RequestParam(required = false) String userid, @RequestParam(required = false) String password, @RequestParam(required = false) String birthday
+            , @RequestParam(required = false) String email, @RequestParam(required = false) String passport) throws Exception {
+        userService.join(new User(userid, password,email,passport,birthday));
+        return "/user/loginForm";
     }
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, @RequestParam(required = false) String userid, @RequestParam(required = false) String password) throws Exception {
+    public String login(HttpServletRequest request, @RequestParam(required = false) String userid, @RequestParam(required = false) String password)  throws Exception {
         // 로그인 인증이 된다면 "/"이동
         if(userid!=null && password!=null) {
             User user = userService.selectOneById(userid);
             if (user != null && user.getPassword().equals(password)) {
                 request.getSession().setAttribute("userid", user.getUserid());
                 request.getSession().setAttribute("password", user.getPassword());
-                return "redirect:/";
+                return "/reservation/main";
             }
         }
         // /loginform 으로 이동
@@ -45,9 +46,26 @@ public class UserController {
         return user==1? "redirect:/loginform?idDup=true" : "redirect:?loginform?isDup=false";
     }
 
-        /*@RequestMapping("/userUpdate")
-        public String userUpdate(){
+    @RequestMapping("/changeId")
+        public String changeId(@RequestParam String userid) throws Exception {
+        userService.changeId(userid);
+        return "redirect:/";
+    }
 
-        }*/
+    @RequestMapping("/changePw")
+        public String changePw(@RequestParam String userpw) throws Exception {
+        userService.changePw(userpw);
+        return "redirect:/";
+    }
+    @RequestMapping("/userdelete")
+        public String userdelete(@RequestParam int user_no){
+        userService.delete(user_no);
+        return "/reservation/main";
+    }
+
+    @RequestMapping("/user")
+        public String user(){
+        return "/user/joinForm";
+    }
 }
 

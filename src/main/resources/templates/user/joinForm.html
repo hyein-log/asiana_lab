@@ -58,6 +58,9 @@ div {
 .birthday input {
     width: 100%;
 }
+.passport input {
+    width: 100%;
+}
 .password input {
     width: 100%;
 }
@@ -89,25 +92,29 @@ button{
 <body>
 <div class="wrapper">
   <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
-  <form action="/login">
+  <form action="/insert" >
   <div class="email">
-    <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+    <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요.">
     <div id="emailError" class="error"></div>
   </div>
   <div class="birthday">
-    <input id="birthday"  type="text" placeholder="생년월일을 입력해 주세요.(ex.1900-01-01)">
+    <input id="birthday" name="birthday" type="text" placeholder="생년월일을 입력해 주세요.(ex.1900-01-01)">
     <div id="birthdayError" class="error"></div>
   </div>
+    <div class="passport">
+      <input id="passport" name="passport" type="text" placeholder="여권번호를 입력해 주세요.">
+      <div id="passportError" class="error"></div>
+    </div>
   <div class="userid">
-    <input id="userid"  type="text" placeholder="아이디를 입력해 주세요." th:value="${userId}">
+    <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${userId}">
     <div id="useridError" class="error"></div>
   </div>
   <div class="password">
-    <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
     <div id="passwordError" class="error"></div>
   </div>
   <div class="passwordCheck">
-    <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+    <input id="passwordCheck" name="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
     <div id="passwordCheckError" class="error"></div>
   </div>
 
@@ -115,9 +122,9 @@ button{
     <hr>
   </div>
   <div class="signUp">
-    <button id="signUpButton" disabled onclick="signUpCheck()">가입하기</button>
+    <input type="submit" value="가입하기" /><br>
   </div>
-  <input type="submit" value="login" /> <br>
+
 </form>
 </div>
 </body>
