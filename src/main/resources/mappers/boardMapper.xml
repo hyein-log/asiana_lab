@@ -33,4 +33,12 @@
         FROM "File"
         WHERE "BOARD_NO" = #{board_no}
     </select>
+
+    <update id="addCnt" parameterType="int">
+        UPDATE "Board"
+        SET
+            "cnt" = "cnt" + 1
+
+        WHERE "board_no" = #{board_no}
+    </update>
 </mapper>

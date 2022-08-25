@@ -43,4 +43,9 @@ public class BoardServiceImpl implements BoardService {
     public List<File> findFilesByBoard(int board_no) {
         return boardDao.findFilesByBoard(board_no);
     }
+
+    @Override
+    public void addCnt(int board_no) {
+        boardDao.addCnt(board_no);
+    }
 }

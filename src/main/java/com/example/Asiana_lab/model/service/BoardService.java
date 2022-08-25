@@ -18,4 +18,6 @@ public interface BoardService {
     User findUserByBoard(int user_no);
 
     List<File> findFilesByBoard(int board_no);
+
+    void addCnt(int board_no);
 }
