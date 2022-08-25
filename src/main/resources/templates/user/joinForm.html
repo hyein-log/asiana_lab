@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 페이지</title>
+
+<style>
+  * {
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 11px;
+}
+
+html {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    width: 45%;
+    border: 1px solid black;
+}
+
+input{
+    border: 1px solid black;
+    border-radius: 3px;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.wrapper {
+    padding: 10px;
+}
+
+div {
+    padding-top: 3px;
+    padding-bottom: 8px;
+}
+
+.title {
+    text-align: center;
+    font-weight: 700;
+}
+
+.email input {
+    width: 100%;
+}
+
+.userid input {
+    width: 100%;
+}
+.birthday input {
+    width: 100%;
+}
+.password input {
+    width: 100%;
+}
+
+.passwordCheck input {
+    width: 100%;
+}
+
+
+.signUp button {
+    width: 100%;
+    cursor:pointer;
+}
+
+button{
+    cursor: pointer;
+    height: 30px;
+}
+
+.error{
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
+  <form action="/login">
+  <div class="email">
+    <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+    <div id="emailError" class="error"></div>
+  </div>
+  <div class="birthday">
+    <input id="birthday"  type="text" placeholder="생년월일을 입력해 주세요.(ex.1900-01-01)">
+    <div id="birthdayError" class="error"></div>
+  </div>
+  <div class="userid">
+    <input id="userid"  type="text" placeholder="아이디를 입력해 주세요." th:value="${userId}">
+    <div id="useridError" class="error"></div>
+  </div>
+  <div class="password">
+    <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+    <div id="passwordError" class="error"></div>
+  </div>
+  <div class="passwordCheck">
+    <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+    <div id="passwordCheckError" class="error"></div>
+  </div>
+
+  <div class="line">
+    <hr>
+  </div>
+  <div class="signUp">
+    <button id="signUpButton" disabled onclick="signUpCheck()">가입하기</button>
+  </div>
+  <input type="submit" value="login" /> <br>
+</form>
+</div>
+</body>
+<script>
+
+
+
+// 가입부분 체크
+
+function signUpCheck(){
+
+  let email = document.getElementById("email").value
+  let userid = document.getElementById("userid").value
+  let password = document.getElementById("password").value
+  let passwordCheck = document.getElementById("passwordCheck").value
+  let area = document.getElementById("area").value
+  let check = true;
+
+  // 이메일확인
+  if(email.includes('@')){
+    let emailId = email.split('@')[0]
+    let emailServer = email.split('@')[1]
+    if(emailId === "" || emailServer === ""){
+      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
+      check = false
+    }
+    else{
+      document.getElementById("emailError").innerHTML=""
+    }
+  }else{
+    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
+    check = false
+  }
+
+
+  // 이름확인
+  if(userid===""){
+    document.getElementById("useridError").innerHTML="이름이 올바르지 않습니다."
+    check = false
+  }else{
+    document.getElementById("useridError").innerHTML=""
+  }
+
+
+  // 비밀번호 확인
+  if(password !== passwordCheck){
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
+    check = false
+  }else{
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML=""
+  }
+
+  if(password===""){
+    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordError").innerHTML=""
+  }
+  if(passwordCheck===""){
+    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordCheckError").innerHTML=""
+  }
+
+
+
+
+  if(check){
+    document.getElementById("emailError").innerHTML=""
+    document.getElementById("useridError").innerHTML=""
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML=""
+
+    //비동기 처리이벤트
+    setTimeout(function() {
+      alert("가입이 완료되었습니다.")
+  },0);
+  }
+}
+</script>
+</html>
