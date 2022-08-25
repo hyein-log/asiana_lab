@@ -21,10 +21,12 @@
     </table>
     <form action="/reservationCommit/${flight.flight_no}">
         <th:block th:each="seat, s: ${seats}">
-            <input type="checkbox" th:name="|ans${s.index + 1}|" th:checked="${seat.}">
+            <input type="checkbox" th:name="|ans${s.index + 1}|" th:checked="${seat.availables}">
             [[${s.index + 1}]]
             <br>
         </th:block>
+        <p>회원 번호를 입력하세요: <input type="text" th:name="|ans${s.index+1}|">
+        </p>
         <button type="submit">제출</button>
     </form>
 </body>

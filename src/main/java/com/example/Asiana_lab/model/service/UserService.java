@@ -28,5 +28,8 @@ public interface UserService  {
     //아이디로 회원 불러오기
     User selectOneById(String userid) throws Exception;
 
+    //회원 번호로 아이디 불러오기
+    String findIdByNo(int user_no) throws Exception;
+
     void delete(int user_no);
 }
