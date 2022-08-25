@@ -2,6 +2,7 @@ package com.example.Asiana_lab.controller;
 
 import com.example.Asiana_lab.model.dto.Flight;
 import com.example.Asiana_lab.model.service.AdminService;
+import com.example.Asiana_lab.model.service.ReservationService;
 import com.example.Asiana_lab.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ public class AdminController {
     private AdminService adminService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ReservationService reservationService;
 
     //여정 추가
     @PostMapping
@@ -51,14 +54,11 @@ public class AdminController {
     }
 
     //여정 조회 (어드민 메인 페이지)
-    @GetMapping("/main/{id}")
-    public String list(@PathVariable("id") String userid, Model model) {
-        boolean isAdmin = adminService.checkAdmin(userid);
-        if(isAdmin) {
-            model.addAttribute("flightList", adminService.getFlightList());
-            return "/admin/adminMain";
-        }
-        return "/reservation/main";
+    @GetMapping("/main")
+    public String list(Model model) {
+
+        model.addAttribute("flights", reservationService.getFlightList());
+        return "/admin/adminMain";
     }
 
     //여정 상세 및 등록 폼 호출

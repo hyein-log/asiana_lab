@@ -35,9 +35,12 @@ public class UserController {
                 request.getSession().setAttribute("password", user.getPassword());
 
                 System.out.println("관리자 페이지 XX");
+
+                System.out.println(user.isAdmin() + "@@@@@@@@@@@@@@@@@@@@@@");
+
                 if(user.isAdmin()) {
                     System.out.println("관리자 페이지");
-                    return "/admin/adminMain";
+                    return "redirect:/admin/main";
                 }
                 return "redirect:/";
             }
