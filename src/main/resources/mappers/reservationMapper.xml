@@ -19,6 +19,7 @@
         SELECT *
         FROM "Seat"
         WHERE "flight_no" = #{flight_no}
+        ORDER BY "seat_no"
     </select>
     <!--해당 여정의 특정 좌석(Seat)정보 불러오기-->
     <select id="selectOneSeat" resultType="Seat" parameterType="int">
