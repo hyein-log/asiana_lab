@@ -6,6 +6,40 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/headerCss.css">
+    <style>
+        table.type07 {
+      border-collapse: collapse;
+      text-align: left;
+      line-height: 1.5;
+      border: 1px solid #ccc;
+      margin: 20px 10px;
+    }
+    table.type07 thead {
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      background: #e7708d;
+    }
+    table.type07 thead th {
+      padding: 10px;
+      font-weight: bold;
+      vertical-align: top;
+      color: #fff;
+    }
+    table.type07 tbody th {
+      width: 150px;
+      padding: 10px;
+      font-weight: bold;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background: #fcf1f4;
+    }
+    table.type07 td {
+      width: 350px;
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+    }
+    </style>
     <title>어드민 페이지</title>
 </head>
 <body>
@@ -14,8 +48,11 @@
 <h1>항공권 관리</h1>
 <h5>여정 선택</h5>
 <div >
-    <table border="solid">
+    <table class="type07" border="solid">
+        <thead>
         <th>리스트 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
+        </thead>
+        <tbody>
         <tr th:each="flight, f: ${flights}">
             <td>
                 <a th:href="|/read_flight/${flight.flight_no}|" target="_blank"> [[ ${f.index+1} ]]</a>
@@ -37,6 +74,8 @@
             </td>
 
         </tr>
+        </tbody>
+
     </table>
 
 </div>

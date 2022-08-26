@@ -40,6 +40,7 @@ public class AdminController {
 
         adminService.addFlight(new Flight(dep_time+"+"+hour+":"+minute, departure, destination));
 
+
         return "redirect:/admin/main";
     }
 
