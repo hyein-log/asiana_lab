@@ -82,7 +82,7 @@ public class UserController {
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("userid");
         request.getSession().removeAttribute("password");
-
+        request.getSession().invalidate();
         return "redirect:/";
     }
 

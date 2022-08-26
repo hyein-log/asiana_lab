@@ -3,31 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>예약 완료 페이지</title>
-    <link rel="stylesheet" href="css/headerCss.css">
+    <link rel="stylesheet" href="/css/headerCss.css">
+    <style>
+        table.type07 {
+      text-align: left;
+      line-height: 1.5;
+      border: 1px solid #ccc;
+      margin: 20px 10px;
+    }
+  .type07 td {
+      width: 350px;
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+    }
+    .title {
+        font-weight : bold
+    }
+    div.mar {
+         margin-left: 380px;
+        }
+       h2{
+            margin-left: 180px;
+       }
+    </style>
 </head>
 <body>
 <br>
 <div th:replace="~{/common/navigation :: headerFragment}"></div>
+<br><br><br>
+<div style="text-align : center;">
+    <img src="/img/symbol.png" width="800" height="250" >
+</div>
+<br><br>
 
-<h1>예약이 정상적으로 완료 되었습니다.</h1><br><br><br>
-<h4>예약 상세 내역</h4>
-예약 번호: [[${reservation_no}]]<br>
+<div class="mar">
+    <h2>╭➳♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡┈┈┈┈┈┈╮</h2>
+    <h2>╿　 　 예약 상세 내역　　  　 ╽</h2>
+    <h2>╰┈┈┈┈┈┈➳♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡⃘♡╯</h2>
 
-여정 번호: [[${flight.flight_no}]]<br>
-출발 일자: [[${flight.dep_time}]]<br>
-출발지: <th:block th:each="airport : ${airports}" >
-    <th:block th:if="${airport.airport_no == flight.departure}">
-        [[ ${airport.airport_name} ]]
-    </th:block>
-</th:block><br>
-도착지: <td>
-    <th:block th:each="airport : ${airports}" >
-        <th:block th:if="${airport.airport_no == flight.destination}">
-            [[ ${airport.airport_name} ]]
-        </th:block>
-    </th:block>
-</td><br>
-좌석 번호: [[${seat_no}]]<br>
-<a href="/">메인으로 돌아가기</a>
+    <br>
+    <table class="type07">
+        <tr>
+            <td class="title">예약 번호</td>
+            <td>[[${reservation_no}]]</td>
+        </tr>
+        <tr>
+            <td class="title">여정 번호</td>
+            <td>[[${flight.flight_no}]]</td>
+        </tr>
+        <tr>
+            <td class="title">출발 일자</td>
+            <td> [[${flight.dep_time}]]</td>
+        </tr>
+        <tr>
+            <td class="title">출발지</td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.departure}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">도착지</td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.destination}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">좌석 번호</td>
+            <td> [[${seat_no}]]</td>
+        </tr>
+    </table>
+
+</div>
+
+<div style="text-align:center"><a href="/">메인으로 돌아가기</a></div>
 </body>
 </html>
