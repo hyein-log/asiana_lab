@@ -7,4 +7,7 @@ import java.util.ArrayList;
 public interface TicketService {
 
     ArrayList<Ticket>  selectTicketInfo(int user_no);
+
+    void seatCancel(Ticket ticket);
+
 }

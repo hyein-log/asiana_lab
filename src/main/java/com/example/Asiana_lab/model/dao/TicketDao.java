@@ -8,5 +8,6 @@ import java.util.ArrayList;
 @Mapper
 public interface TicketDao {
     ArrayList<Ticket> selectTicketInfo(int user_no);
-
+    void seatCancel(Ticket ticket);
+    void seatIsAvailable(Ticket ticket);
 }

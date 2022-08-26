@@ -10,4 +10,12 @@
         JOIN "Flight" f using("flight_no")
         WHERE "user_no" = #{user_no}
     </select>
+    <delete id="seatCancel" parameterType="Ticket">
+        DELETE FROM "Reservation" r
+        WHERE "user_no" = #{user_no} AND "resv_no" = #{resv_no}
+    </delete>
+    <update id="seatIsAvailable" parameterType="Ticket">
+        UPDATE  "Seat" s (s."isAvailable") set 'y'
+        WHERE "seat_no" =#{seat_no}
+    </update>
 </mapper>

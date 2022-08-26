@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/headerCss.css">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <body>
 <br>
 <div th:replace="~{/common/navigation :: headerFragment}"></div>
@@ -19,6 +20,7 @@
         <th scope="col">출발 시간</th>
         <th scope="col">출발지</th>
         <th scope="col">도착지</th>
+        <th> </th>
     </tr>
     </thead>
     <tbody th:each="ticket : ${tickets}">
@@ -40,9 +42,33 @@
                 </th:block>
             </th:block>
         </td>
+        <td>
+            <input type="button" id="cancel" value="좌석 취소" th:value="${ticket.resv_no}">좌석 취소
+        </td>
     </tr>
     </tbody>
 </table>
-
 </body>
+<script>
+
+    $("#cancel").click(function(){
+    var rev_no = $("#cancel").val();
+alert(rev_no);
+$.ajax({
+    url: "/seatCancel",
+    type: "get",
+    data:  {resv_no : rev_no},
+    success: function (data) {
+        alert("좌석예약이 취소되었습니다.");
+        let url = `/`;
+        console.log(url);
+        location.replace(url);
+    },
+    error: function () {
+        alert("취소 실패");
+    }
+})
+})
+
+</script>
 </html>

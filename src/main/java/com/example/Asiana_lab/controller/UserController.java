@@ -116,13 +116,13 @@ public class UserController {
     }
 
     @RequestMapping("/idSearch2")
-    public boolean idSearch2(@RequestParam String email, Model model) throws Exception {
-        String userid = userService.findId(email);
-        if(userid.length()!=0||userid!=null) {
-            model.addAttribute("userid", userid);
-            return true;
+    public String idSearch2(@RequestParam String email, Model model) throws Exception {
+        User user = userService.selectOneByEmail(email);
+        if(user.getUserid().length()!=0||user.getUserid()!=null) {
+            model.addAttribute("userid", user.getUserid());
+            return "/user/findId";
         }
-        return false;
+        return "redirect:/";
     }
 
     @RequestMapping("/pwSearch")

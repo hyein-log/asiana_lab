@@ -18,4 +18,10 @@ public class TicketServiceImpl implements TicketService{
         ArrayList<Ticket> tickets = ticketDao.selectTicketInfo(user_no);
         return tickets;
     }
+
+    @Override
+    public void seatCancel(Ticket ticket) {
+        ticketDao.seatCancel(ticket);
+        ticketDao.seatIsAvailable(ticket);
+    }
 }
