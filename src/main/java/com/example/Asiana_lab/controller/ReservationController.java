@@ -51,6 +51,8 @@ public class ReservationController {
         ArrayList<Seat> seats = reservationService.getSeat(flight_no);
         for (Seat seat : seats ){
 
+            System.out.println(seats.size());
+
             int seat_no = seat.getSeat_no();
             if (!reservationService.getIsAvailable(flight_no,seat_no)){//예약이 불가능 하다면
                 seatAvail[seat_no-1] = true;
