@@ -62,9 +62,8 @@ public class AdminController {
     }
 
     //여정 상세 및 등록 폼 호출
-    @GetMapping("/detail")
-    public String detail(@RequestParam(value = "flight_no") int flight_no, Model model) {
-        model.addAttribute("flightDetail", adminService.getFlightById(flight_no));
+    @GetMapping("/form")
+    public String form() {
         return "/admin/form";
     }
 
