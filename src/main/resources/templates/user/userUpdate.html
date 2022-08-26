@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>회원정보수정</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <style>
   * {
     margin: 0px;
@@ -100,7 +102,8 @@ mileage-->
       아이디<input id="userid" name="userid" type="text" th:value="${user.userid}" readonly>
     </div>
     <div class="email">
-      이메일<input id="email" name="email" type="text" th:value="${user.email}" readonly>
+      이메일<input id="email" name="email" type="text" th:value="${user.email}" >
+      <input type="button" id="emailCheck" value="Email 수정"></input>
     </div>
     <div class="passport">
        여권 번호<input id="passport" name="passport" type="text" th:value="${user.passport}" readonly>
@@ -111,10 +114,58 @@ mileage-->
     <div class="mileage">
       마일리지<input id="mileage" name="mileage" type="text" th:value="${user.mileage}" readonly>
     </div>
+    <div>
+      비밀 번호<input id="password" name="password" type="text">
+      <input type="button" id="pwUpdate" value="비밀번호 수정">
+    </div>
     <div class="line">
       <hr>
+      <a href="/" class="btn">메인으로 돌아가기</a><br>
     </div>
-
 </div>
 </body>
+<script>
+
+$("#emailCheck").click(function(){
+
+var em = $("#email").val();
+
+alert(em);
+$.ajax({
+    url: "/emailUpdate",
+    type: "post",
+    data:  {email : em},
+    success: function (data) {
+        alert("이메일이 수정되었습니다.");
+        let url = `/`;
+        console.log(url);
+        location.replace(url);
+    },
+    error: function () {
+        alert("수정실패");
+    }
+})
+})
+
+
+$("#pwUpdate").click(function(){
+
+var pwd = $("#password").val();
+
+$.ajax({
+    url: "/pwUpdate",
+    type: "post",
+    data:  {password : pwd},
+    success: function (data) {
+        alert("비밀번호가 수정되었습니다.");
+        let url = `/`;
+        console.log(url);
+        location.replace(url);
+    },
+    error: function () {
+        alert("수정 실패");
+    }
+})
+})
+</script>
 </html>

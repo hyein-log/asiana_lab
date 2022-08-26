@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -56,14 +57,14 @@ public class UserController {
     }
 
     @RequestMapping("/changeId")
-    public String changeId(@RequestParam String userid) throws Exception {
-        userService.changeId(userid);
+    public String changeId(@RequestParam User user) throws Exception {
+        userService.changeId(user);
         return "redirect:/";
     }
 
     @RequestMapping("/changePw")
-    public String changePw(@RequestParam String userpw) throws Exception {
-        userService.changePw(userpw);
+    public String changePw(@RequestParam User user) throws Exception {
+        userService.changePw(user);
         return "redirect:/";
     }
     @RequestMapping("/userdelete")
@@ -94,7 +95,9 @@ public class UserController {
     @RequestMapping("/infoUpdate")
     public String infoUpdate(HttpServletRequest request, Model model){
         String userid = (String) request.getSession().getAttribute("userid");
-        model.addAttribute("user",userService.selectIdByUserid(userid));
+        User user = userService.selectIdByUserid(userid);
+        System.out.println("---------------user : "+user);
+        model.addAttribute("user",user);
         return "/user/userUpdate";
     }
 
@@ -113,10 +116,13 @@ public class UserController {
     }
 
     @RequestMapping("/idSearch2")
-    public String idSearch2(@RequestParam String email, Model model) throws Exception {
+    public boolean idSearch2(@RequestParam String email, Model model) throws Exception {
         String userid = userService.findId(email);
-        model.addAttribute("userid", userid);
-        return "/user/findId";
+        if(userid.length()!=0||userid!=null) {
+            model.addAttribute("userid", userid);
+            return true;
+        }
+        return false;
     }
 
     @RequestMapping("/pwSearch")
@@ -156,9 +162,33 @@ public class UserController {
         int dup = userService.emailDuplicateCheck(email);
         if(dup==0){
             request.getSession().setAttribute("email", email);
-            return "redirect:/user";
+            return "redirect:/";
         }
-        return "redirect:/user";
+        return "redirect:/";
     }
+
+    @RequestMapping("/emailUpdate")
+    public String userUpdate(HttpServletRequest request,@RequestParam String email, Model model) throws Exception {
+        int user_no = (int) request.getSession().getAttribute("user_no");
+        System.out.println(email+"+email**************888");
+        System.out.println(user_no+"+user_no**************888");
+        User user = userService.selectOneById(user_no);
+        user.setEmail(email);
+        userService.updateEmail(user);
+        model.addAttribute("user", user);
+        return "redirect:/";
+    }
+    @RequestMapping("/pwUpdate")
+    @ResponseBody
+    public String pwUpdate(HttpServletRequest request, @RequestParam String password) throws Exception {
+        int user_no = (int) request.getSession().getAttribute("user_no");
+        User user = userService.selectOneById(user_no);
+
+        user.setPassword(password);
+        userService.updatePw(user);
+        return "redirect:/";
+    }
+
+
 }
 

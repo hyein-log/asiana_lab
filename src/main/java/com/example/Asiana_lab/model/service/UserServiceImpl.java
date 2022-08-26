@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectOneById(int user_no) throws Exception {
-        return null;
+        return userDao.selectOneById(user_no);
     }
 
     @Override
@@ -83,13 +83,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeId(String password) throws Exception {
-        userDao.changeId(password);
+    public void changeId(User user) throws Exception {
+        userDao.changeId(user);
     }
 
     @Override
-    public void changePw(String password) throws Exception {
-        userDao.changePw(password);
+    public void changePw(User user) throws Exception {
+        userDao.changePw(user);
     }
 
     @Override
@@ -99,6 +99,21 @@ public class UserServiceImpl implements UserService {
         return userid;
     }
 
+    @Override
+    public User selectOneByEmail(String email) {
+        User user = userDao.selectOneByEmail(email);
+        return user;
+    }
+
+    @Override
+    public void updatePw(User user) {
+        userDao.updatePw(user);
+    }
+
+    @Override
+    public void updateEmail(User user) {
+        userDao.updateEmail(user);
+    }
 
 
 }

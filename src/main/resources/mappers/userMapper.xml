@@ -18,16 +18,27 @@
     <select id="selectOneByEmail" parameterType="String" resultType="User">
         select * from "User" u  where "email"  = #{email}
     </select>
-    <update id="changeId" parameterType="String">
-        UPDATE "User" SET "userid" = #{userid} WHERE "password" = #{password}
+    <update id="changeId" parameterType="User">
+        UPDATE "User" SET "userid" = #{userid} WHERE "user_no" = #{user_no}
     </update>
 
-    <update id="changePw" parameterType="String">
-        UPDATE "User" SET "password" = #{password} WHERE "userid" = #{userid}
+    <update id="changePw" parameterType="User">
+        UPDATE "User" SET "password" = #{password} WHERE "user_no" = #{user_no}
     </update>
 
     <delete id="user_delete" parameterType="int">
         delete from "User" where "user_no"=#{user_no}
     </delete>
-
+    <update id="updatePw" parameterType="User">
+        UPDATE "User"
+        SET
+        "password" = #{password}
+        WHERE "user_no" = #{user_no}
+    </update>
+    <update id="updateEmail" parameterType="User">
+        UPDATE "User"
+        SET
+        "email" = #{email}
+        WHERE "user_no" = #{user_no}
+    </update>
 </mapper>
