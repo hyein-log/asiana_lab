@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>회원가입 페이지</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="css/headerCss.css">
-<style>
+  <style>
   * {
     margin: 0px;
     box-sizing: border-box;
@@ -91,58 +90,77 @@ button{
 </head>
 
 <body>
-<br>
-<div th:replace="~{/common/navigation :: headerFragment}"></div>
-
 <div class="wrapper">
   <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
   <form action="/insert" >
-  <div class="email">
-    <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요." th:value="${email}">
-    <input type="button" value="Email 중복확인" onclick="emailCheck()"></input>
-    <div id="emailError" class="error"></div>
-  </div>
-  <div class="birthday">
-    <input id="birthday" name="birthday" type="text" placeholder="생년월일을 입력해 주세요.(ex.1900-01-01)">
-    <div id="birthdayError" class="error"></div>
-  </div>
+    <div class="email">
+      <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요." th:value="${email}">
+      <input type="button" id="emailCheck" value="Email 중복확인"></input>
+      <div id="emailError" class="error"></div>
+    </div>
+    <div class="birthday">
+      <input id="birthday" name="birthday" type="text" placeholder="생년월일을 입력해 주세요.(ex.1900-01-01)">
+      <div id="birthdayError" class="error"></div>
+    </div>
     <div class="passport">
       <input id="passport" name="passport" type="text" placeholder="여권번호를 입력해 주세요.">
       <div id="passportError" class="error"></div>
     </div>
-  <div class="userid">
+    <div class="userid">
 
-    <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${session.userId}">
-    <input type="button" value="ID 중복확인" onclick="idCheck()"></input>
-    <div id="useridError" class="error"></div>
-        <br>
-  </div>
-  <div class="password">
-    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
-    <div id="passwordError" class="error"></div>
-  </div>
-  <div class="passwordCheck">
-    <input id="passwordCheck" name="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
-    <div id="passwordCheckError" class="error"></div>
-  </div>
+      <input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요." th:value="${session.userId}">
+      <input type="button" id="idCheck" value="ID 중복확인"></input>
+      <div id="useridError" class="error"></div>
+      <br>
+    </div>
+    <div class="password">
+      <input id="password" name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+      <div id="passwordError" class="error"></div>
+    </div>
+    <div class="passwordCheck">
+      <input id="passwordCheck" name="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+      <div id="passwordCheckError" class="error"></div>
+    </div>
 
-  <div class="line">
-    <hr>
-  </div>
-  <div class="signUp">
-    <input type="submit" value="가입하기" /><br>
-  </div>
+    <div class="line">
+      <hr>
+    </div>
+    <div class="signUp">
+      <input type="submit" value="가입하기" /><br>
+    </div>
 
-</form>
+  </form>
 </div>
 </body>
 <script>
 
-function idCheck(){
-window.open("idCheck","idwin", "width=400", "height=350")
-}
-function emailCheck(){
-window.open("emailCheck","emailwin", "width=400", "height=350")
-}
+$("#emailCheck").click(function(){
+$.ajax({
+    url: "/emailCheckProc",
+    type: "get",
+    data:  $("#email").serialize(),
+    success: function (data) {
+        alert("사용가능한 이메일 입니다.");
+    },
+    error: function () {
+        alert("다른 이메일을 입력하세요");
+    }
+})
+})
+
+$("#idCheck").click(function(){
+$.ajax({
+    url: "/idCheckProc",
+    type: "get",
+    data:  $("#userid").serialize(),
+    success: function (data) {
+        alert("사용가능한 아이디 입니다.");
+    },
+    error: function () {
+        alert("다른 아이디를 입력하세요");
+    }
+})
+})
+
 </script>
 </html>
