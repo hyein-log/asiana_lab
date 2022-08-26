@@ -2,6 +2,7 @@ package com.example.Asiana_lab.controller;
 
 import com.example.Asiana_lab.model.dto.Flight;
 import com.example.Asiana_lab.model.service.AdminService;
+import com.example.Asiana_lab.model.service.AirportService;
 import com.example.Asiana_lab.model.service.ReservationService;
 import com.example.Asiana_lab.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,21 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private ReservationService reservationService;
+    @Autowired
+    private AirportService airportService;
 
     //여정 추가
-    @PostMapping
-    public ResponseEntity<String> add(@RequestBody Flight flight, HttpServletRequest req) {
-        adminService.addFlight(flight);
-        return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
+    @GetMapping("/insert")
+    public String add(@RequestParam String date, @RequestParam String hour, @RequestParam String minute, @RequestParam int departure, @RequestParam int destination) {
+
+        System.out.println(date + hour + minute);
+
+        String dep_time = date.substring(6, 10) + "-" + date.substring(0, 2) + "-" + date.substring(3, 5);
+        System.out.println(dep_time + "@@@@@@@@@@@@@@@");
+
+        adminService.addFlight(new Flight(dep_time+"+"+hour+":"+minute, departure, destination));
+
+        return "redirect:/admin/main";
     }
 
     //여정 수정
@@ -58,20 +68,26 @@ public class AdminController {
     public String list(Model model) {
 
         model.addAttribute("flights", reservationService.getFlightList());
+        model.addAttribute("airports",airportService.getAirportList());
         return "/admin/adminMain";
     }
 
     //여정 상세 및 등록 폼 호출
     @GetMapping("/form")
-    public String form() {
+    public String form(Model model) {
+
+        model.addAttribute("airports", airportService.getAirportList());
+
         return "/admin/form";
     }
 
     //여정 선택
-    @GetMapping("/{id}")
-    public ResponseEntity<Flight> selectFlight(@PathVariable("id") int flight_no) {
-        Flight flight = adminService.getFlightById(flight_no);
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Flight> selectFlight(@PathVariable("id") int flight_no) {
+//        Flight flight = adminService.getFlightById(flight_no);
+//
+//        return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+//    }
 
-        return new ResponseEntity<Flight>(flight, HttpStatus.OK);
-    }
+
 }

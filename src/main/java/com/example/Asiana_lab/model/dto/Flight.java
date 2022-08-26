@@ -12,4 +12,10 @@ public class Flight {
     private String dep_time; // 출발일+시간
     private int departure; //출발지 공항 번호
     private int destination; //도착지 공항 번호
+
+    public Flight (String dep_time, int departure, int destination) {
+        this.dep_time = dep_time;
+        this.departure = departure;
+        this.destination = destination;
+    }
 }

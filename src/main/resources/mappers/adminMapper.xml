@@ -6,8 +6,8 @@
 
     <!-- 여정 관리 -->
     <insert id="insertFlight">
-        INSERT INTO "Flight"(dep_date, departure, destination)
-        VALUES(#{dep_date}, #{departure}, #{destination})
+        INSERT INTO "Flight"
+        VALUES(flight_seq.NEXTVAL, #{dep_time}, #{departure}, #{destination})
     </insert>
     
     <delete id="deleteFlight" parameterType="int">
@@ -17,7 +17,7 @@
 
     <update id="updateFlight">
         UPDATE "Flight"
-        SET dep_date = #{dep_date},
+        SET dep_time = #{dep_time},
         departure = #{departure},
         destination = #{destination}
         WHERE flight_no = #{flight_no}
@@ -26,6 +26,7 @@
     <select id="selectAllFlight" resultType="flight">
         SELECT *
         FROM "Flight"
+        ORDER BY "flight_no"
     </select>
 
 

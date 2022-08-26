@@ -21,8 +21,20 @@
                 <a th:href="|/read_flight/${flight.flight_no}|" target="_blank"> [[ ${f.index+1} ]]</a>
             </td>
             <td>[[ ${flight.dep_time} ]]</td>
-            <td>[[ ${flight.departure} ]]</td>
-            <td>[[ ${flight.destination} ]]</td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.departure}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
+            <td>
+                <th:block th:each="airport : ${airports}" >
+                    <th:block th:if="${airport.airport_no == flight.destination}">
+                        [[ ${airport.airport_name} ]]
+                    </th:block>
+                </th:block>
+            </td>
 
         </tr>
     </table>
