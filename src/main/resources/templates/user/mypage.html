@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Mypage</title>
+    <link rel="stylesheet" href="css/headerCss.css">
+
 </head>
 <body>
+<br>
+<div th:replace="~{/common/navigation :: headerFragment}"></div>
 <h3>마이페이지</h3>
 <a href="/reserveInfo">예약조회</a>
 <a href="/infoUpdate">정보수정</a>

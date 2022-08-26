@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>예약 완료 페이지</title>
+    <link rel="stylesheet" href="css/headerCss.css">
 </head>
 <body>
+<br>
+<div th:replace="~{/common/navigation :: headerFragment}"></div>
+
 <h1>예약이 정상적으로 완료 되었습니다.</h1><br><br><br>
 <h4>예약 상세 내역</h4>
 예약 번호: [[${reservation_no}]]<br>

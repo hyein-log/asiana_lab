@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>LoginForm</title>
+    <link rel="stylesheet" href="css/headerCss.css">
 </head>
 <body>
+<br>
+<div th:replace="~{/common/navigation :: headerFragment}"></div>
 <h3>로그인</h3>
 <form action="/login" method="post">
   아이디 : <input type="text" name="userid" th:value="${userid}"> <br>

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <header th:fragment="headerFragment">
+  <img src="img/asianaLogo.png" width="200" height="70" href="/">
   <nav>
     <ul>
-      <li><a href="/">Home(예약)</a></li>
-      <li><a href="/boardList">게시판</a></li>
-      <li th:unless="${session.userid}"><a href="/login">로그인</a></li>
-      <li th:if="${session.userid}"><a href="/logout">로그아웃</a></li>
-      <li th:unless="${session.userid}"><a href="/user">회원가입</a></li>
-      <li th:if="${session.userid}"><a href="/mypage">마이페이지</a></li>
+      <li><a class="lists" href="/">Home(예약)</a></li>
+      <li><a class="lists" href="/boardList">게시판</a></li>
+      <li th:unless="${session.userid}"><a class="lists" href="/login">로그인</a></li>
+      <li th:if="${session.userid}"><a class="lists" href="/logout">로그아웃</a></li>
+      <li th:unless="${session.userid}"><a class="lists" href="/user">회원가입</a></li>
+      <li th:if="${session.userid}"><a class="lists" href="/mypage">마이페이지</a></li>
     </ul>
   </nav>
 </header>
