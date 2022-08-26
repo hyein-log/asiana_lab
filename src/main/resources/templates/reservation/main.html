@@ -8,13 +8,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/headerCss.css"> <style>
+    <link rel="stylesheet" href="css/headerCss.css">
+    <style>
         .item .carousel-caption{
-        top:-140px;
-        left:0px;
-        bottom:0px;
-        right:205px;
+            top:-140px;
+            left:0px;
+            bottom:0px;
+            right:205px;
         }
+        hr {
+            background-color: #FF0000;
+            height: 20px;
+        }
+    table.type07 {
+      border-collapse: collapse;
+      text-align: left;
+      line-height: 1.5;
+      border: 1px solid #ccc;
+      margin: 20px 10px;
+    }
+    table.type07 thead {
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      background: #e7708d;
+    }
+    table.type07 thead th {
+      padding: 10px;
+      font-weight: bold;
+      vertical-align: top;
+      color: #fff;
+    }
+    table.type07 tbody th {
+      width: 150px;
+      padding: 10px;
+      font-weight: bold;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background: #fcf1f4;
+    }
+    table.type07 td {
+      width: 350px;
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+    }
 
     </style>
 </head>
@@ -81,16 +118,19 @@
     keyboard : true	  });
     });
 </script>
-<h5>여정 선택</h5>
-<div >
-    <table border="solid">
-        <caption>여정 리스트</caption>
-        <th>리스트</th><th>여정 번호</th><th>여정 날짜</th><th>출발지</th><th>도착지</th>
+<hr>
+<br>
+<div style="text-align:center"><h2>항공권 예약</h2></div>
+<div>
+    <table class="type07">
+        <th style="font-size:18px">리스트</th><th style="font-size:18px">여정 번호</th><th style="font-size:18px">여정 날짜</th><th style="font-size:18px">출발지</th><th style="font-size:18px">도착지</th>
         <tr th:each="flight, f: ${flights}">
             <td>
-                <a th:href="|/read_flight/${flight.flight_no}|" onClick="loginCheck();" id="sessionUserNo" th:data-value="${session.user_no}" > [[ ${f.index+1} ]]</a>
+                [[ ${f.index+1} ]]
             </td>
-            <td>[[ ${flight.flight_no} ]]</td>
+            <td>
+                <a th:href="|/read_flight/${flight.flight_no}|" onClick="loginCheck();" id="sessionUserNo" th:data-value="${session.user_no}" >[[ ${flight.flight_no} ]] </a>
+            </td>
             <td>[[ ${flight.dep_time} ]]</td>
 
                 <td>
